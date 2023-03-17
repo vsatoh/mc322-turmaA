@@ -6,7 +6,7 @@ public class Cliente {
     private int idade;
     private String endereco;
 
-    public void CriaSeguradora(String nome, String telefone, String email, String endereco) {
+    public void CriaSeguradora(String nome, String cpf, String dataNascimento, int idade, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -30,19 +30,27 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     } 
     
-    public String setEmail() {
-    return email;
+    public String getCpfCliente() {
+        return cpf;
     }
 
-    public void getEmail(String email) {
-    this.email = email;
+    public void setCpfCliente(String cpf) {
+        this.cpf = cpf;
+    } 
+
+    public int setIdadeCliente() {
+        return idade;
     }
 
-    public String getEndereco () {
+    public void getIdadeCliente(int idade) {
+        this.idade = idade;
+    }
+
+    public String getEnderecoCliente() {
         return endereco ;
     }
     
-    public void setEndereco ( String endereco ) {
-        this . endereco = endereco ;
+    public void setEnderecoCliente(String endereco) {
+        this.endereco = endereco ;
     }
 }
