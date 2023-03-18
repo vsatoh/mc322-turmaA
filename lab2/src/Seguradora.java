@@ -35,7 +35,7 @@ public class Seguradora {
     this.email = email;
    }
 
-   public String getEndereco () {
+   public String getEndereco() {
         return endereco ;
    }
     
