@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Sinistro {
 
     private int id;
@@ -32,5 +33,12 @@ public class Sinistro {
 
     public void setEnderecoSinistro(String endereco) {
         this.endereco = endereco;
+    }
+
+    public int geraId() {
+        Random rand = new Random();
+        int n = rand.nextInt(999999);
+        n +=1;
+        return n;
     }
 }

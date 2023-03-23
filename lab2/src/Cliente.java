@@ -58,7 +58,7 @@ public class Cliente {
         this.endereco = endereco ;
     }
 
-    public boolean ehIgual(String str, int tamanho_str, int pos_str) {
+    private boolean ehIgual(String str, int tamanho_str, int pos_str) {
         if(pos_str + 1 == tamanho_str) {
             return true;
         }
@@ -68,7 +68,7 @@ public class Cliente {
         return ehIgual(str, tamanho_str, pos_str+1);
     }
 
-    public boolean verificarDigitosVerificadores(String cpf) {
+    private boolean verificarDigitosVerificadores(String cpf) {
         int soma = 0;
         int primeiroDigito;
         int segundoDigito;
