@@ -5,7 +5,7 @@ public class Sinistro {
     private String data;
     private String endereco;
 
-    public void CriaSinistro(int id, String data, String endereco) {
+    public Sinistro(int id, String data, String endereco) {
         this.id = id;
         this.data = data;
         this.endereco = endereco;

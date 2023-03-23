@@ -8,7 +8,7 @@ public class Cliente {
 
     // Funcao construtuora
 
-    public void CriaSeguradora(String nome, String cpf, String dataNascimento, int idade, String endereco) {
+    public Cliente(String nome, String cpf, String dataNascimento, int idade, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
