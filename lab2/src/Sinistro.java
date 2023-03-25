@@ -5,8 +5,8 @@ public class Sinistro {
     private String data;
     private String endereco;
 
-    public Sinistro(int id, String data, String endereco) {
-        this.id = id;
+    public Sinistro(String data, String endereco) {
+        this.id = geraId();
         this.data = data;
         this.endereco = endereco;
     }

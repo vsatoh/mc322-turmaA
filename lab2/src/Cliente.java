@@ -42,11 +42,11 @@ public class Cliente {
         this.cpf = cpf;
     } 
 
-    public int setIdadeCliente() {
+    public int getIdadeCliente() {
         return idade;
     }
 
-    public void getIdadeCliente(int idade) {
+    public void setIdadeCliente(int idade) {
         this.idade = idade;
     }
 
@@ -57,6 +57,15 @@ public class Cliente {
     public void setEnderecoCliente(String endereco) {
         this.endereco = endereco ;
     }
+
+    public void printCliente() {
+        System.out.println(getNomeCliente());
+        System.out.println(getDataNascimentoCliente());
+        System.out.println(getIdadeCliente());
+        System.out.println(getEnderecoCliente());
+        System.out.println(getCpfCliente());
+    }
+
 
     private boolean ehIgual(String str, int tamanho_str, int pos_str) {
         if(pos_str + 1 == tamanho_str) {
@@ -100,8 +109,8 @@ public class Cliente {
 
     public boolean validarCPF(String cpf) {
         int tam_cpf;
-        cpf = cpf.replaceAll(".","");
-        cpf = cpf.replaceAll("-","");
+        cpf = cpf.replaceAll("\\.", "");
+        cpf = cpf.replaceAll("\\-", "");
         tam_cpf = cpf.length();
         if (tam_cpf != 11) {
             return false;
