@@ -59,11 +59,11 @@ public class Cliente {
     }
 
     public void printCliente() {
-        System.out.println(getNomeCliente());
-        System.out.println(getDataNascimentoCliente());
-        System.out.println(getIdadeCliente());
-        System.out.println(getEnderecoCliente());
-        System.out.println(getCpfCliente());
+        System.out.println("Nome: " + getNomeCliente());
+        System.out.println("CPF: " + getCpfCliente());
+        System.out.println("Data de Nascimento: " + getDataNascimentoCliente());
+        System.out.println("Idade: " + getIdadeCliente());
+        System.out.println("Endereco: " + getEnderecoCliente());
     }
 
 

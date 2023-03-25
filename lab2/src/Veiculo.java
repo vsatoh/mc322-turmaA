@@ -34,4 +34,10 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    public void printVeiculo() {
+    System.out.println("Placa: " + getPlacaVeiculo());
+    System.out.println("Marca: " + getMarcaVeiculo());
+    System.out.println("Modelo: " + getModeloVeiculo());
+    }
+
 }

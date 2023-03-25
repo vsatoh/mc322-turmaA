@@ -42,4 +42,11 @@ public class Seguradora {
    public void setEndereco ( String endereco ) {
         this.endereco = endereco ;
    }
+
+     public void printSeguradora() {
+          System.out.println("Nome: " + getNome());
+          System.out.println("Telefone: " + getTelefone());
+          System.out.println("Email: " + getEmail());
+          System.out.println("Endereco: " + getEndereco());
+     }
 }

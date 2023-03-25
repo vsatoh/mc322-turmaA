@@ -41,4 +41,10 @@ public class Sinistro {
         n +=1;
         return n;
     }
+    
+    public void printSinistro() {
+        System.out.println("ID: " + getIdSinistro());
+        System.out.println("Data: " + getDataSinistro());
+        System.out.println("Endereco: " + getEnderecoSinistro());
+   }
 }
