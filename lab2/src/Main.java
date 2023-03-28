@@ -18,6 +18,7 @@ public class Main {
         n_cadastro = entrada.nextLine();
         while(!n_cadastro.equals("0")) {
             if(n_cadastro.equals("1")) {
+                //criação do objeto Cliente
                 String nome;
                 String cpf;
                 String dataNascimento;
@@ -46,6 +47,7 @@ public class Main {
                 System.out.println("Cliente cadastrado com sucesso!");
             } 
             else if(n_cadastro.equals("2")) {
+                //criação do objeto Seguradora
                 String nome;
                 String telefone;
                 String email;
@@ -64,6 +66,8 @@ public class Main {
                 cadastro_Seguradora.printSeguradora();     
             }
             else if(n_cadastro.equals("3")) {
+                //criação do objeto Sinistro
+
                 String data;
                 String endereco;
     
@@ -76,6 +80,8 @@ public class Main {
                 cadastro_Sinistro.printSinistro();
             }
             else if(n_cadastro.equals("4")) {
+                //criação do objeto Veiculo
+ 
                 String placa;
                 String marca;
                 String modelo;
