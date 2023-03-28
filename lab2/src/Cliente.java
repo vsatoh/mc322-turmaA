@@ -58,7 +58,7 @@ public class Cliente {
         this.endereco = endereco ;
     }
 
-    public void printCliente() {
+    public void printCliente() { //printa as infos do cliente
         System.out.println("Nome: " + getNomeCliente());
         System.out.println("CPF: " + getCpfCliente());
         System.out.println("Data de Nascimento: " + getDataNascimentoCliente());
@@ -67,7 +67,7 @@ public class Cliente {
     }
 
 
-    private boolean ehIgual(String str, int tamanho_str, int pos_str) {
+    private boolean ehIgual(String str, int tamanho_str, int pos_str) { // verifica se todos os digitos sao iguais
         if(pos_str + 1 == tamanho_str) {
             return true;
         }
@@ -77,7 +77,7 @@ public class Cliente {
         return ehIgual(str, tamanho_str, pos_str+1);
     }
 
-    private boolean verificarDigitosVerificadores(String cpf) {
+    private boolean verificarDigitosVerificadores(String cpf) { // confere os digitos verificadores
         int soma = 0;
         int primeiroDigito;
         int segundoDigito;
@@ -107,7 +107,7 @@ public class Cliente {
         return resultado;
     }
 
-    public boolean validarCPF(String cpf) {
+    public boolean validarCPF(String cpf) { // funcao validar cpf
         int tam_cpf;
         cpf = cpf.replaceAll("\\.", "");
         cpf = cpf.replaceAll("\\-", "");

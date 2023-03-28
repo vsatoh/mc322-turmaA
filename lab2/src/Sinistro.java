@@ -11,6 +11,8 @@ public class Sinistro {
         this.endereco = endereco;
     }
 
+    //getters e setters
+
     public int getIdSinistro() {
         return id;
     }
@@ -35,6 +37,8 @@ public class Sinistro {
         this.endereco = endereco;
     }
 
+    // gera um numero randomico entre 1 e 999999
+
     public int geraId() {
         Random rand = new Random();
         int n = rand.nextInt(999999);
@@ -42,6 +46,8 @@ public class Sinistro {
         return n;
     }
     
+    //funcao de printar as variaveis do objeto
+
     public void printSinistro() {
         System.out.println("ID: " + getIdSinistro());
         System.out.println("Data: " + getDataSinistro());

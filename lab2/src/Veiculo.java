@@ -10,6 +10,8 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    //getters e setters
+
     public String getPlacaVeiculo() {
         return placa;
     }
@@ -34,10 +36,12 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    //funcao de printar as variaveis do objeto
+
     public void printVeiculo() {
-    System.out.println("Placa: " + getPlacaVeiculo());
-    System.out.println("Marca: " + getMarcaVeiculo());
-    System.out.println("Modelo: " + getModeloVeiculo());
+        System.out.println("Placa: " + getPlacaVeiculo());
+        System.out.println("Marca: " + getMarcaVeiculo());
+        System.out.println("Modelo: " + getModeloVeiculo());
     }
 
 }
