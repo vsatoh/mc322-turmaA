@@ -29,30 +29,37 @@ public class ClientePJ extends Cliente {
 
     private boolean verificarDigitosVerificadores(String CNPJ) { // confere os digitos verificadores
         int soma = 0;
+        int resto;
         int primeiroDigito;
         int segundoDigito;
         boolean resultado;
 
         for (int i = 0; i < 12; i++) {
-            soma += Character.getNumericValue(CNPJ.charAt(i)) * (5 - i);
+            soma += Character.getNumericValue(CNPJ.charAt(i)) * (9-(i+4) % 8);
         }
 
-        primeiroDigito = (soma * 10) % 11;
-        if (primeiroDigito == 10) {
+        resto = soma % 11;
+        if (resto < 2) {
             primeiroDigito = 0;
+        } 
+        else {
+            primeiroDigito = 11 - resto;
         }
 
         soma = 0;
-        for (int i = 0; i < 10; i++) {
-            soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
+        for (int i = 0; i < 13; i++) {
+            soma += Character.getNumericValue(CNPJ.charAt(i)) * (9-(i+3) % 8);
         }
 
-        segundoDigito = (soma * 10) % 11;
-        if (segundoDigito == 10) {
+        resto = soma % 11;
+        if (resto < 2) {
             segundoDigito = 0;
+        } 
+        else {
+            segundoDigito = 11 - resto;
         }
 
-        resultado = (primeiroDigito == Character.getNumericValue(cpf.charAt(9)) && segundoDigito == Character.getNumericValue(cpf.charAt(10)));
+        resultado = (primeiroDigito == Character.getNumericValue(CNPJ.charAt(11)) && segundoDigito == Character.getNumericValue(CNPJ.charAt(12)));
 
         return resultado;
     }
@@ -66,7 +73,9 @@ public class ClientePJ extends Cliente {
 
         if (tam_cnpj != 14) {
             return false;
+        } else if (verificarDigitosVerificadores(CNPJ)) {
+            return true;
         }
-
+        return false;
     }
 }
