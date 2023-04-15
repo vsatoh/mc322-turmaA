@@ -9,7 +9,7 @@ public class Cliente {
     private String educacao;
     private String genero;
     private String classeEconomica;
-    private List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();;
+    private List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();
 
     // Funcao construtuora
 
@@ -25,27 +25,27 @@ public class Cliente {
 
     //getters e setters
 
-    public String getNomeCliente() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNomeCliente(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getEnderecoCliente() {
+    public String getEndereco() {
         return endereco ;
     }
     
-    public void setEnderecoCliente(String endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco ;
     }
 
-    public Date getDataLicencaCliente() {
+    public Date getDataLicenca() {
         return dataLicenca;
     }
 
-    public void setDataLicencaCliente(Date dataLicenca) {
+    public void setDataLicenca(Date dataLicenca) {
         this.dataLicenca = dataLicenca;
     } 
 
@@ -81,5 +81,15 @@ public class Cliente {
     //     this.listaVeiculos = listaVeiculos ;
     // }
 
+    public String toString() {
+        String infocliente;
+        infocliente = "Nome: " + getNome() + "\n"
+        + "Endereço: " + getEndereco() + "\n"
+        + "Data Licenca: " + getDataLicenca() + "\n"
+        + "Educacao: " + getEducacao() + "\n"
+        + "Genero: " + getGenero() + "\n"
+        + "Classe Economica: " + getClasseEconomica();
+        return infocliente;
+   }
 
 }

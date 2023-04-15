@@ -1,42 +1,57 @@
 import java.util.Random;
 public class Sinistro {
 
-    private int id;
+    final private int id;
     private String data;
     private String endereco;
+    private Seguradora seguradora;
+    private Veiculo veiculo;
 
-    public Sinistro(String data, String endereco) {
+    public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo) {
         this.id = geraId();
         this.data = data;
         this.endereco = endereco;
+        this.seguradora = seguradora;
+        this.veiculo = veiculo;
     }
 
     //getters e setters
 
-    public int getIdSinistro() {
+    public int getId() {
         return id;
     }
 
-    public void setIdSinistro(int id) {
-        this.id = id;
-    }
-
-    public String getDataSinistro() {
+    public String getData() {
         return data;
     }
 
-    public void setDataSinistro(String data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public String getEnderecoSinistro() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEnderecoSinistro(String endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
+    public Seguradora getSeguradora() {
+        return seguradora;
+    }
+
+    public void setSeguradora(Seguradora seguradora) {
+        this.seguradora = seguradora;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
     // gera um numero randomico entre 1 e 999999
 
     public int geraId() {
@@ -47,10 +62,13 @@ public class Sinistro {
     }
     
     //funcao de printar as variaveis do objeto
-
-    public void printSinistro() {
-        System.out.println("ID: " + getIdSinistro());
-        System.out.println("Data: " + getDataSinistro());
-        System.out.println("Endereco: " + getEnderecoSinistro());
+    public String toString() {
+        String infoSinistro;
+        infoSinistro = "ID: " + getId() + "\n"
+        + "Data: " + getData() + "\n"
+        + "Endereco: " + getEndereco() + "\n"
+        + "Seguradora: " + getSeguradora() + "\n"
+        + "Veiculo: " + getVeiculo() + "\n";
+        return infoSinistro;
    }
 }

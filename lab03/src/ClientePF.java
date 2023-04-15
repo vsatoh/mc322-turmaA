@@ -11,19 +11,19 @@ public class ClientePF extends Cliente {
         this.dataNascimento = dataNascimento;
     }
     
-    public Date getDataNascimentoCliente() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimentoCliente(Date dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     } 
 
-    public String getCpfCliente() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpfCliente(String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     } 
 
@@ -83,4 +83,18 @@ public class ClientePF extends Cliente {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        String infocliente;
+        infocliente = "Nome: " + getNome() + "\n"
+        + "Endereço: " + getEndereco() + "\n"
+        + "Data Licenca: " + getDataLicenca() + "\n"
+        + "Educacao: " + getEducacao() + "\n"
+        + "Genero: " + getGenero() + "\n"
+        + "Classe Economica: " + getClasseEconomica()
+        + "CPF: " + getCpf() + "\n"
+        + "Data de nascimento: " + getDataNascimento();
+        return infocliente;
+   }
 }

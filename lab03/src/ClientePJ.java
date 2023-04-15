@@ -19,11 +19,11 @@ public class ClientePJ extends Cliente {
         this.dataFundacao = dataFundacao;
     } 
 
-    public String getCNPJCliente() {
+    public String getCNPJ() {
         return CNPJ;
     }
 
-    public void setCNPJCliente(String CNPJ) {
+    public void setCNPJ(String CNPJ) {
         this.CNPJ = CNPJ;
     } 
 
@@ -78,4 +78,18 @@ public class ClientePJ extends Cliente {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        String infocliente;
+        infocliente = "Nome: " + getNome() + "\n"
+        + "Endereço: " + getEndereco() + "\n"
+        + "Data Licenca: " + getDataLicenca() + "\n"
+        + "Educacao: " + getEducacao() + "\n"
+        + "Genero: " + getGenero() + "\n"
+        + "Classe Economica: " + getClasseEconomica()
+        + "CNPJ: " + getCNPJ() + "\n"
+        + "Data de fundacao: " + getDataFundacao();
+        return infocliente;
+   }
 }

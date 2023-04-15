@@ -37,7 +37,7 @@ public class Main {
                 idade = Integer.parseInt(idade_s);
                 System.out.print("Endereco: ");
                 endereco = entrada.nextLine();
-                cadastro_Cliente = new Cliente(nome, cpf, dataNascimento, idade, endereco);
+                //cadastro_Cliente = new Cliente(nome, cpf, dataNascimento, idade, endereco);
     
                 while(!cadastro_Cliente.validarCPF(cpf)) {
                     System.out.println("CPF invalido!");
@@ -62,8 +62,8 @@ public class Main {
                 System.out.print("Endereco: ");
                 endereco = entrada.nextLine();
     
-                cadastro_Seguradora = new Seguradora(nome, telefone, email, endereco);      
-                cadastro_Seguradora.printSeguradora();     
+                //cadastro_Seguradora = new Seguradora(nome, telefone, email, endereco);      
+                //cadastro_Seguradora.printSeguradora();     
             }
             else if(n_cadastro.equals("3")) {
                 //criação do objeto Sinistro
@@ -76,8 +76,8 @@ public class Main {
                 System.out.print("Endereco: ");
                 endereco = entrada.nextLine();
     
-                cadastro_Sinistro = new Sinistro(data, endereco);
-                cadastro_Sinistro.printSinistro();
+                //cadastro_Sinistro = new Sinistro(data, endereco);
+                //cadastro_Sinistro.printSinistro();
             }
             else if(n_cadastro.equals("4")) {
                 //criação do objeto Veiculo
@@ -93,8 +93,8 @@ public class Main {
                 System.out.print("Modelo: ");
                 modelo = entrada.nextLine();
     
-                cadastro_Veiculo = new Veiculo(placa, marca, modelo);
-                cadastro_Veiculo.printVeiculo();
+                //cadastro_Veiculo = new Veiculo(placa, marca, modelo);
+                //cadastro_Veiculo.printVeiculo();
             }
         }
         entrada.close();

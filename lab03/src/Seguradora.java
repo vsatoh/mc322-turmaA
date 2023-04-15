@@ -1,16 +1,22 @@
+import java.util.*;
 public class Seguradora {
     private String nome;
     private String telefone;
     private String email;
     private String endereco;
+    private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
+    private List <Cliente> listaClientes = new ArrayList<Cliente>();
+
 
      // Funcao construtuora
 
-     public Seguradora(String nome, String telefone, String email, String endereco) {
+     public Seguradora(String nome, String telefone, String email, String endereco, List <Sinistro> listaSinistros, List <Cliente> listaClientes) {
           this.nome = nome;
           this.telefone = telefone;
           this.email = email;
           this.endereco = endereco;
+          this.listaSinistros = listaSinistros;
+          this.listaClientes = listaClientes;
      }
 
      //getters e setters
@@ -48,11 +54,12 @@ public class Seguradora {
      }
 
      //funcao de printar as variaveis do objeto
-
-     public void printSeguradora() {
-          System.out.println("Nome: " + getNome());
-          System.out.println("Telefone: " + getTelefone());
-          System.out.println("Email: " + getEmail());
-          System.out.println("Endereco: " + getEndereco());
+     public String toString() {
+          String infoSeguradora;
+          infoSeguradora = "Nome: " + getNome() + "\n"
+          + "Telefone: " + getTelefone() + "\n"
+          + "Email: " + getEmail() + "\n"
+          + "Endereco: " + getEndereco() + "\n";
+          return infoSeguradora;
      }
 }
