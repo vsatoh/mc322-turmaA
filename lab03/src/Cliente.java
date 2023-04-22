@@ -1,26 +1,17 @@
 import java.util.*;
-import java.util.Date;
+//import java.util.Date;
 
 public class Cliente {
 
     private String nome;
     private String endereco;
-    private Date dataLicenca;
-    private String educacao;
-    private String genero;
-    private String classeEconomica;
     private List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();
 
     // Funcao construtuora
 
-    public Cliente(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, List <Veiculo> listaVeiculos) {
+    public Cliente(String nome, String endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        this.dataLicenca = dataLicenca;
-        this.educacao = educacao;
-        this.genero = genero;
-        this.classeEconomica = classeEconomica;
-        this.listaVeiculos = listaVeiculos;
     }
 
     //getters e setters
@@ -41,54 +32,31 @@ public class Cliente {
         this.endereco = endereco ;
     }
 
-    public Date getDataLicenca() {
-        return dataLicenca;
-    }
-
-    public void setDataLicenca(Date dataLicenca) {
-        this.dataLicenca = dataLicenca;
-    } 
-
-    public String getEducacao() {
-        return educacao ;
+    public List <Veiculo> getListaVeiculos() {
+        return listaVeiculos;
     }
     
-    public void setEducacao(String educacao) {
-        this.educacao = educacao ;
+    public void setListaVeiculos(List <Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos ;
     }
 
-    public String getGenero() {
-        return genero;
-    }
-    
-    public void setGenero(String genero) {
-        this.genero = genero ;
-    }
+    public void addlistaVeiculos(Veiculo veiculo) {
+        this.listaVeiculos.add(veiculo);
+   }
 
-    public String getClasseEconomica() {
-        return classeEconomica;
+   public String imprimeVeiculos() {
+    String listaveiculomodelado = "";
+    for(Veiculo i: getListaVeiculos()) {
+        listaveiculomodelado += i.toString() + "\n";
     }
-    
-    public void setGeneroClasseEconomica(String classeEconomica) {
-        this.classeEconomica = classeEconomica ;
+    return listaveiculomodelado;
     }
-
-    // public List <Veiculo> getListaVeiculos() {
-    //     return listaVeiculos;
-    // }
-    
-    // public List <Veiculo> setGeneroClasseListaVeiculos(List <Veiculo> listaVeiculos) {
-    //     this.listaVeiculos = listaVeiculos ;
-    // }
 
     public String toString() {
         String infocliente;
         infocliente = "Nome: " + getNome() + "\n"
         + "Endereço: " + getEndereco() + "\n"
-        + "Data Licenca: " + getDataLicenca() + "\n"
-        + "Educacao: " + getEducacao() + "\n"
-        + "Genero: " + getGenero() + "\n"
-        + "Classe Economica: " + getClasseEconomica();
+        + "Veiculos: " + getListaVeiculos();
         return infocliente;
    }
 

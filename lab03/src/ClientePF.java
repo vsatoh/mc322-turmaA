@@ -1,12 +1,19 @@
-import java.util.*;
 import java.util.Date;
 
 public class ClientePF extends Cliente {
     private String cpf;
+    private String genero;
+    private Date dataLicenca;
+    private String educacao;
     private Date dataNascimento;
+    private String classeEconomica;
 
-    public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, List <Veiculo> listaVeiculos, String cpf, Date dataNascimento) {
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica, listaVeiculos);
+    public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, String cpf, Date dataNascimento) {
+        super(nome, endereco);
+        this.dataLicenca = dataLicenca;
+        this.educacao = educacao;
+        this.genero = genero;
+        this.classeEconomica = classeEconomica;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
     }
@@ -19,15 +26,47 @@ public class ClientePF extends Cliente {
         this.dataNascimento = dataNascimento;
     } 
 
-    public String getCpf() {
+    public String getCPF() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCPF(String cpf) {
         this.cpf = cpf;
     } 
 
-    private boolean ehIgual(String str, int tamanho_str, int pos_str) { // verifica se todos os digitos sao iguais
+    public Date getDataLicenca() {
+        return dataLicenca;
+    }
+
+    public void setDataLicenca(Date dataLicenca) {
+        this.dataLicenca = dataLicenca;
+    } 
+
+    public String getEducacao() {
+        return educacao ;
+    }
+    
+    public void setEducacao(String educacao) {
+        this.educacao = educacao ;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+    
+    public void setGenero(String genero) {
+        this.genero = genero ;
+    }
+
+    public String getClasseEconomica() {
+        return classeEconomica;
+    }
+    
+    public void setGeneroClasseEconomica(String classeEconomica) {
+        this.classeEconomica = classeEconomica ;
+    }
+
+    private static boolean ehIgual(String str, int tamanho_str, int pos_str) { // verifica se todos os digitos sao iguais
         if(pos_str + 1 == tamanho_str) {
             return true;
         }
@@ -37,7 +76,7 @@ public class ClientePF extends Cliente {
         return ehIgual(str, tamanho_str, pos_str+1);
     }
 
-    private boolean verificarDigitosVerificadores(String cpf) { // confere os digitos verificadores
+    private static boolean verificarDigitosVerificadores(String cpf) { // confere os digitos verificadores
         int soma = 0;
         int primeiroDigito;
         int segundoDigito;
@@ -67,7 +106,7 @@ public class ClientePF extends Cliente {
         return resultado;
     }
 
-    public boolean validarCPF(String cpf) { // funcao validar cpf
+    public static boolean validarCPF(String cpf) { // funcao validar cpf
         int tam_cpf;
         cpf = cpf.replaceAll("\\.", "");
         cpf = cpf.replaceAll("\\-", "");
@@ -88,13 +127,15 @@ public class ClientePF extends Cliente {
     public String toString() {
         String infocliente;
         infocliente = "Nome: " + getNome() + "\n"
-        + "Endereço: " + getEndereco() + "\n"
+        + "Endereco: " + getEndereco() + "\n"
         + "Data Licenca: " + getDataLicenca() + "\n"
         + "Educacao: " + getEducacao() + "\n"
         + "Genero: " + getGenero() + "\n"
-        + "Classe Economica: " + getClasseEconomica()
-        + "CPF: " + getCpf() + "\n"
-        + "Data de nascimento: " + getDataNascimento();
+        + "Classe Economica: " + getClasseEconomica()+ "\n"
+        + "CPF: " + getCPF() + "\n"
+        + "Data de nascimento: " + getDataNascimento() + "\n"
+        + "Veiculos: \n" 
+        + imprimeVeiculos();
         return infocliente;
    }
 }

@@ -1,12 +1,11 @@
-import java.util.*;
 import java.util.Date;
 
 public class ClientePJ extends Cliente {
     private String CNPJ;
     private Date dataFundacao;
 
-    public ClientePJ(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, List <Veiculo> listaVeiculos, String CNPJ, Date dataFundacao) {
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica, listaVeiculos);
+    public ClientePJ(String nome, String endereco, String CNPJ, Date dataFundacao) {
+        super(nome, endereco);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
     }
@@ -83,13 +82,11 @@ public class ClientePJ extends Cliente {
     public String toString() {
         String infocliente;
         infocliente = "Nome: " + getNome() + "\n"
-        + "Endereço: " + getEndereco() + "\n"
-        + "Data Licenca: " + getDataLicenca() + "\n"
-        + "Educacao: " + getEducacao() + "\n"
-        + "Genero: " + getGenero() + "\n"
-        + "Classe Economica: " + getClasseEconomica()
+        + "Endereco: " + getEndereco() + "\n"
         + "CNPJ: " + getCNPJ() + "\n"
-        + "Data de fundacao: " + getDataFundacao();
+        + "Data de fundacao: " + getDataFundacao() + "\n"
+        + "Veiculos: \n" 
+        + imprimeVeiculos();
         return infocliente;
    }
 }

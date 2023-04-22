@@ -1,102 +1,36 @@
-import java.util.Scanner;
+//import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String n_cadastro;
-        Cliente cadastro_Cliente;
-        Seguradora cadastro_Seguradora;
-        Sinistro cadastro_Sinistro;
-        Veiculo cadastro_Veiculo;
-        Scanner entrada = new Scanner(System.in);
+        ClientePF clientePF;
+        ClientePJ clientePJ;
+        Seguradora seguradora;
+        Veiculo veiculo1, veiculo2;
+        Date data;
+        SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
+        data = formatadata.parse("17/04/2023");
 
-        System.out.println("Cadastro:");
-        System.out.println("(1) - Cliente");
-        System.out.println("(2) - Seguradora");
-        System.out.println("(3) - Sinistro");
-        System.out.println("(4) - Veiculo");
+        veiculo1 = new Veiculo("ABC", "honda", "alibaba", 2020);
+        veiculo2 = new Veiculo("DEF", "fiat", "eren", 2021);
         
-        n_cadastro = entrada.nextLine();
-        while(!n_cadastro.equals("0")) {
-            if(n_cadastro.equals("1")) {
-                //criação do objeto Cliente
-                String nome;
-                String cpf;
-                String dataNascimento;
-                int idade;
-                String idade_s;
-                String endereco;
-    
-                System.out.print("Nome: ");
-                nome = entrada.nextLine();
-                System.out.print("CPF: ");
-                cpf = entrada.nextLine();
-                System.out.print("Data de Nascimento: ");
-                dataNascimento = entrada.nextLine();
-                System.out.print("Idade: ");
-                idade_s = entrada.nextLine();
-                idade = Integer.parseInt(idade_s);
-                System.out.print("Endereco: ");
-                endereco = entrada.nextLine();
-                //cadastro_Cliente = new Cliente(nome, cpf, dataNascimento, idade, endereco);
-    
-                while(!cadastro_Cliente.validarCPF(cpf)) {
-                    System.out.println("CPF invalido!");
-                    System.out.println("Insira novamente: ");
-                    cpf = entrada.nextLine();
-                }
-                System.out.println("Cliente cadastrado com sucesso!");
-            } 
-            else if(n_cadastro.equals("2")) {
-                //criação do objeto Seguradora
-                String nome;
-                String telefone;
-                String email;
-                String endereco;
-    
-                System.out.print("Nome: ");
-                nome = entrada.nextLine();
-                System.out.print("Telefone: ");
-                telefone = entrada.nextLine();
-                System.out.print("Email: ");
-                email = entrada.nextLine();
-                System.out.print("Endereco: ");
-                endereco = entrada.nextLine();
-    
-                //cadastro_Seguradora = new Seguradora(nome, telefone, email, endereco);      
-                //cadastro_Seguradora.printSeguradora();     
-            }
-            else if(n_cadastro.equals("3")) {
-                //criação do objeto Sinistro
+        seguradora = new Seguradora("Seguros", "(11) 99999-9999", "nome@example.com", "Centro");
+        clientePF = new ClientePF("Victor", "Centro", data, "superior completo", "Masculino", "media", "149.691.157-10", data);
+        clientePJ = new ClientePJ("Abraao", "Centro", "12.345.678/0002-00",data);
 
-                String data;
-                String endereco;
-    
-                System.out.print("Data: ");
-                data = entrada.nextLine();
-                System.out.print("Endereco: ");
-                endereco = entrada.nextLine();
-    
-                //cadastro_Sinistro = new Sinistro(data, endereco);
-                //cadastro_Sinistro.printSinistro();
-            }
-            else if(n_cadastro.equals("4")) {
-                //criação do objeto Veiculo
- 
-                String placa;
-                String marca;
-                String modelo;
-    
-                System.out.print("Placa: ");
-                placa = entrada.nextLine();
-                System.out.print("Marca: ");
-                marca = entrada.nextLine();
-                System.out.print("Modelo: ");
-                modelo = entrada.nextLine();
-    
-                //cadastro_Veiculo = new Veiculo(placa, marca, modelo);
-                //cadastro_Veiculo.printVeiculo();
-            }
-        }
-        entrada.close();
+        seguradora.cadastrarCliente(clientePJ);
+        seguradora.cadastrarCliente(clientePF);
+
+        clientePF.addlistaVeiculos(veiculo1);
+        clientePF.addlistaVeiculos(veiculo2);
+        clientePJ.addlistaVeiculos(veiculo2);
+
+        System.out.println(clientePF.toString());
+        // seguradora.gerarSinistro(clientePJ, veiculo2, seguradora);
+        // seguradora.gerarSinistro(clientePF, veiculo1, seguradora);
+        // //seguradora.visualizarSinistro(clientePF.getNome());
+        // seguradora.listarSinistros();
+
     }
 }
