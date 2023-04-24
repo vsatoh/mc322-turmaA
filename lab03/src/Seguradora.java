@@ -205,4 +205,11 @@ public class Seguradora {
                System.out.println(getlistaSinistros().get(i).toString());
           }
      }
+
+     public void listarClientes() {
+          for(int i = 0; i < getlistaClientes().size(); i++) {
+               System.out.println(getlistaClientes().get(i).toString());
+          }
+     }
+
 }

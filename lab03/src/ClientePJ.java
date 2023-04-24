@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class ClientePJ extends Cliente {
-    private String CNPJ;
+    final private String CNPJ;
     private Date dataFundacao;
 
     public ClientePJ(String nome, String endereco, String CNPJ, Date dataFundacao) {
@@ -22,11 +22,7 @@ public class ClientePJ extends Cliente {
         return CNPJ;
     }
 
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
-    } 
-
-    private boolean verificarDigitosVerificadores(String CNPJ) { // confere os digitos verificadores
+    private static boolean verificarDigitosVerificadores(String CNPJ) { // confere os digitos verificadores
         int soma = 0;
         int resto;
         int primeiroDigito;
@@ -64,7 +60,7 @@ public class ClientePJ extends Cliente {
     }
 
 
-    public boolean validarCNPJ(String CNPJ) {
+    public static boolean validarCNPJ(String CNPJ) {
         int tam_cnpj;
         CNPJ = CNPJ.replaceAll("\\.", "");
         CNPJ = CNPJ.replaceAll("\\-", "");

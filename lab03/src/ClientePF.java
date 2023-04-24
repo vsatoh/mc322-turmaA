@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class ClientePF extends Cliente {
-    private String cpf;
+    final private String cpf;
     private String genero;
     private Date dataLicenca;
     private String educacao;
@@ -29,10 +29,6 @@ public class ClientePF extends Cliente {
     public String getCPF() {
         return cpf;
     }
-
-    public void setCPF(String cpf) {
-        this.cpf = cpf;
-    } 
 
     public Date getDataLicenca() {
         return dataLicenca;
