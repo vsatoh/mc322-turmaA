@@ -1,4 +1,4 @@
-//import java.util.Scanner;
+import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,6 +10,7 @@ public class Main {
         Veiculo veiculo1, veiculo2, veiculo3;
         Date data;
         SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
+        Scanner entrada = new Scanner(System.in);
         data = formatadata.parse("17/04/2023");
 
         // Instanciando veiculos e chamando toString
@@ -20,8 +21,21 @@ public class Main {
         System.out.println(veiculo1.toString());
 
         // Instanciando obejtos do tipo cliente e seguradora
+        String nome;
+        String telefone;
+        String email;
+        String endereco;
 
-        seguradora = new Seguradora("Seguros", "(11) 99999-9999", "nome@example.com", "Centro");
+        System.out.print("Nome: ");
+        nome = entrada.nextLine();
+        System.out.print("Telefone: ");
+        telefone = entrada.nextLine();
+        System.out.print("Email: ");
+        email = entrada.nextLine();
+        System.out.print("Endereco: ");
+        endereco = entrada.nextLine();
+
+        seguradora = new Seguradora(nome, telefone, email, endereco);
         clientePF = new ClientePF("Victor", "Centro", data, "superior completo", "Masculino", "media", "149.691.157-10", data);
         clientePJ = new ClientePJ("Abraao", "Centro", "12.345.678/0002-00",data);
         clientePJ2 = new ClientePJ("Alirio", "Centro", "00.000.000/0000-00",data);
@@ -63,5 +77,7 @@ public class Main {
         seguradora.removerCliente(clientePJ2);
 
         seguradora.listarClientes();
+
+        entrada.close();
     }
 }
