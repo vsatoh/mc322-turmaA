@@ -6,12 +6,14 @@ public class Cliente {
     private String nome;
     private String endereco;
     private List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();
+    private double valorSeguro;
 
     // Funcao construtuora
 
-    public Cliente(String nome, String endereco) {
+    public Cliente(String nome, String endereco, double valorSeguro) { //tem  mudar essa maldade aqui
         this.nome = nome;
         this.endereco = endereco;
+        this.valorSeguro = valorSeguro;
     }
 
     //getters e setters
@@ -40,9 +42,18 @@ public class Cliente {
         this.listaVeiculos = listaVeiculos ;
     }
 
+    public double getValorSeguro() {
+        return valorSeguro;
+    }
+
+    public void setValorSeguro(double valorSeguro) {
+        this.valorSeguro = valorSeguro;
+    }
+
+
     public void addlistaVeiculos(Veiculo veiculo) {
         this.listaVeiculos.add(veiculo);
-   }
+    }
 
    public String imprimeVeiculos() {
     String listaveiculomodelado = "";

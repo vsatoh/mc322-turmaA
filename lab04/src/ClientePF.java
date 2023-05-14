@@ -119,6 +119,14 @@ public class ClientePF extends Cliente {
         return true;
     }
 
+
+    //fzr um switch aqui ou em outro lugar pra calcular essa merda          
+    public double calculaScore() {
+        double score;
+        score = CalcSeguro.VALOR_BASE*this.getListaVeiculos().length;
+        return score;
+    }
+
     @Override
     public String toString() {
         String infocliente;

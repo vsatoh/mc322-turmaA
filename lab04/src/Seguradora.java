@@ -9,6 +9,7 @@ public class Seguradora {
     private String endereco;
     private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
     private List <Cliente> listaClientes = new ArrayList<Cliente>();
+    private List <Integer> NumeroSinistros = new ArrayList<Integer>();
     private List <Integer> listaID = new ArrayList<Integer>();
 
 
@@ -95,6 +96,18 @@ public class Seguradora {
 
      public void removelistaSinistros(Sinistro sinistro) {
           this.listaSinistros.remove(sinistro);
+     }
+
+     public void addNumeroSinistros(Cliente cliente) { //numero de sinistros
+          int pos = this.listaClientes.indexOf(cliente);
+          int ele = this.NumeroSinistros.get(pos);
+          this.NumeroSinistros.add(pos, ele+1);
+     }
+
+     public void removeNumeroSinistros(Cliente cliente) {
+          int pos = this.listaClientes.indexOf(cliente);
+          int ele = this.NumeroSinistros.get(pos);
+          this.NumeroSinistros.add(pos, ele-1);
      }
 
      public void addlistaClientes(ClientePF cliente) {
@@ -187,6 +200,7 @@ public class Seguradora {
           System.out.println("Sinistro gerado com sucesso!");
           sinistro = new Sinistro("21/04/2023", "centro", this, veiculo, cliente, Sinistro.geraId(this));
           this.addlistaSinistros(sinistro);
+          this.addNumeroSinistros(cliente);
           return true;
      }
 
@@ -212,4 +226,7 @@ public class Seguradora {
           }
      }
 
+     public double calcularPrecoSeguroCliente(ClientePF cliente) {
+
+     }
 }

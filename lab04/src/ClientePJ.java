@@ -3,11 +3,13 @@ import java.util.Date;
 public class ClientePJ extends Cliente {
     final private String CNPJ;
     private Date dataFundacao;
+    private int qntdeFuncionarios;
 
-    public ClientePJ(String nome, String endereco, String CNPJ, Date dataFundacao) {
+    public ClientePJ(String nome, String endereco, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
         super(nome, endereco);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
+        this.qntdeFuncionarios = qntdeFuncionarios;
     }
     
     public Date getDataFundacao() {
@@ -20,6 +22,14 @@ public class ClientePJ extends Cliente {
 
     public String getCNPJ() {
         return CNPJ;
+    }
+
+    public void setQntdeFuncionarios(int qntdeFuncionarios) {
+        this.qntdeFuncionarios = qntdeFuncionarios;
+    } 
+
+    public String getQntdeFuncionarios() {
+        return qntdeFuncionarios;
     }
 
     private static boolean verificarDigitosVerificadores(String CNPJ) { // confere os digitos verificadores
@@ -72,6 +82,12 @@ public class ClientePJ extends Cliente {
             return true;
         }
         return false;
+    }
+
+    public double calculaScore() {
+        double score;
+        score = CalcSeguro.VALOR_BASE*(1+(qntdeFuncionarios)/100)*this.getListaVeiculos().length;
+        return score;
     }
 
     @Override
