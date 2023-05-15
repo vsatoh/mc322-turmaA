@@ -61,70 +61,32 @@ public class ClientePF extends Cliente {
     public void setGeneroClasseEconomica(String classeEconomica) {
         this.classeEconomica = classeEconomica ;
     }
-
-    private static boolean ehIgual(String str, int tamanho_str, int pos_str) { // verifica se todos os digitos sao iguais
-        if(pos_str + 1 == tamanho_str) {
-            return true;
-        }
-        else if(str.charAt(pos_str) != str.charAt(pos_str+1)) {
-            return false;
-        }
-        return ehIgual(str, tamanho_str, pos_str+1);
-    }
-
-    private static boolean verificarDigitosVerificadores(String cpf) { // confere os digitos verificadores
-        int soma = 0;
-        int primeiroDigito;
-        int segundoDigito;
-        boolean resultado;
-
-        for (int i = 0; i < 9; i++) {
-            soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
-        }
-
-        primeiroDigito = (soma * 10) % 11;
-        if (primeiroDigito == 10) {
-            primeiroDigito = 0;
-        }
-
-        soma = 0;
-        for (int i = 0; i < 10; i++) {
-            soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
-        }
-
-        segundoDigito = (soma * 10) % 11;
-        if (segundoDigito == 10) {
-            segundoDigito = 0;
-        }
-
-        resultado = (primeiroDigito == Character.getNumericValue(cpf.charAt(9)) && segundoDigito == Character.getNumericValue(cpf.charAt(10)));
-
-        return resultado;
-    }
-
-    public static boolean validarCPF(String cpf) { // funcao validar cpf
-        int tam_cpf;
-        cpf = cpf.replaceAll("\\.", "");
-        cpf = cpf.replaceAll("\\-", "");
-        tam_cpf = cpf.length();
-        if (tam_cpf != 11) {
-            return false;
-        }
-        else if (ehIgual(cpf, tam_cpf, 0)) {
-            return false;
-        } 
-        else if (!verificarDigitosVerificadores(cpf)) {
-            return false;
-        }
-        return true;
-    }
-
-
-    //fzr um switch aqui ou em outro lugar pra calcular essa merda          
+     
     public double calculaScore() {
-        double score;
-        score = CalcSeguro.VALOR_BASE*this.getListaVeiculos().length;
+        double score, fator;
+        int idade = calculaIdade();
+        if(idade >= 18 & idade < 30) {
+            fator = CalcSeguro.FATOR_18_30.getFator();
+        } else if(idade >= 30 & idade < 60) {
+            fator = CalcSeguro.FATOR_30_60.getFator();
+        } else if(idade >= 60 & idade < 90) {
+            fator = CalcSeguro.FATOR_60_90.getFator();
+        }
+        score = CalcSeguro.VALOR_BASE.getFator()*fator*this.getListaVeiculos().length; //incluir o fator idade
         return score;
+    }
+
+    //calcula idade
+    public int calculaIdade() {
+        int diahj = 15, meshj = 5, anohj = 2023;
+        int diac = this.getDataNascimento().getDate(),
+        mesc = this.getDataNascimento().getMonth()+1,
+        anoc = this.getDataNascimento().getYear();
+        int idade = anohj-anoc;
+        if((meshj < mesc) | meshj == mesc & diahj < diac) {
+            idade -= 1;
+        }
+        return idade;
     }
 
     @Override

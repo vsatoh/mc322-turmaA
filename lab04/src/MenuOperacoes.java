@@ -1,11 +1,11 @@
 public enum MenuOperacoes {
-	CADASTROS(1 , new SubmenuCadastrar[] {
+	CADASTROS("cadastrar" , new SubmenuCadastrar[] {
         SubmenuCadastrar.CADASTRAR_CLIENTE,
         SubmenuCadastrar.CADASTRAR_VEICULO,
         SubmenuCadastrar.CADASTRAR_SEGURADORA,
         SubmenuCadastrar.VOLTAR
 	}),
-	LISTAR(2 , new SubmenuListar[] {
+	LISTAR("listar" , new SubmenuListar[] {
         SubmenuListar.LISTAR_CLIENTES,
         SubmenuListar.LISTAR_SINISTROS_SEGURADORA,
         SubmenuListar.LISTAR_SINISTROS_CLIENTE,
@@ -13,7 +13,7 @@ public enum MenuOperacoes {
         SubmenuListar.LISTAR_VEICULOS_CLIENTE,
         SubmenuListar.VOLTAR
 	}),
-	EXCLUIR(3 , new SubmenuExcluir[] {
+	EXCLUIR(" , new SubmenuExcluir[] {
         SubmenuExcluir.EXCLUIR_CLIENTE,
         SubmenuExcluir.EXCLUIR_VEICULO,
         SubmenuExcluir.EXCLUIR_SINISTRO,
