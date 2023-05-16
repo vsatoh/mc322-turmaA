@@ -5,8 +5,8 @@ public class ClientePJ extends Cliente {
     private Date dataFundacao;
     private int qntdeFuncionarios;
 
-    public ClientePJ(String nome, String endereco, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
-        super(nome, endereco);
+    public ClientePJ(String nome, String endereco, double valorSeguro, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
+        super(nome, endereco, valorSeguro);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
         this.qntdeFuncionarios = qntdeFuncionarios;
@@ -28,13 +28,14 @@ public class ClientePJ extends Cliente {
         this.qntdeFuncionarios = qntdeFuncionarios;
     } 
 
-    public String getQntdeFuncionarios() {
+    public int getQntdeFuncionarios() {
         return qntdeFuncionarios;
     }
 
+    @Override
     public double calculaScore() {
         double score;
-        score = CalcSeguro.VALOR_BASE*(1+(qntdeFuncionarios)/100)*this.getListaVeiculos().length;
+        score = CalcSeguro.VALOR_BASE.getFator()*(1+(qntdeFuncionarios)/100)*this.getListaVeiculos().size();
         return score;
     }
 
@@ -46,7 +47,8 @@ public class ClientePJ extends Cliente {
         + "CNPJ: " + getCNPJ() + "\n"
         + "Data de fundacao: " + getDataFundacao() + "\n"
         + "Veiculos: \n" 
-        + imprimeVeiculos();
+        + imprimeVeiculos() + "\n"
+        + "Valor seguro: " + getValorSeguro();
         return infocliente;
    }
 }

@@ -13,7 +13,7 @@ public enum MenuOperacoes {
         SubmenuListar.LISTAR_VEICULOS_CLIENTE,
         SubmenuListar.VOLTAR
 	}),
-	EXCLUIR(" , new SubmenuExcluir[] {
+	EXCLUIR("excluir" , new SubmenuExcluir[] {
         SubmenuExcluir.EXCLUIR_CLIENTE,
         SubmenuExcluir.EXCLUIR_VEICULO,
         SubmenuExcluir.EXCLUIR_SINISTRO,

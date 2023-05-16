@@ -8,8 +8,8 @@ public class ClientePF extends Cliente {
     private Date dataNascimento;
     private String classeEconomica;
 
-    public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, String cpf, Date dataNascimento) {
-        super(nome, endereco);
+    public ClientePF(String nome, String endereco, double valorSeguro, Date dataLicenca, String educacao, String genero, String classeEconomica, String cpf, Date dataNascimento) {
+        super(nome, endereco, valorSeguro);
         this.dataLicenca = dataLicenca;
         this.educacao = educacao;
         this.genero = genero;
@@ -62,8 +62,9 @@ public class ClientePF extends Cliente {
         this.classeEconomica = classeEconomica ;
     }
      
+    @Override
     public double calculaScore() {
-        double score, fator;
+        double score, fator = 0;
         int idade = calculaIdade();
         if(idade >= 18 & idade < 30) {
             fator = CalcSeguro.FATOR_18_30.getFator();
@@ -72,7 +73,7 @@ public class ClientePF extends Cliente {
         } else if(idade >= 60 & idade < 90) {
             fator = CalcSeguro.FATOR_60_90.getFator();
         }
-        score = CalcSeguro.VALOR_BASE.getFator()*fator*this.getListaVeiculos().length; //incluir o fator idade
+        score = CalcSeguro.VALOR_BASE.getFator()*fator*this.getListaVeiculos().size(); //incluir o fator idade
         return score;
     }
 
@@ -81,8 +82,8 @@ public class ClientePF extends Cliente {
         int diahj = 15, meshj = 5, anohj = 2023;
         int diac = this.getDataNascimento().getDate(),
         mesc = this.getDataNascimento().getMonth()+1,
-        anoc = this.getDataNascimento().getYear();
-        int idade = anohj-anoc;
+        anoc = this.getDataNascimento().getYear() + 1900;
+        int idade = anohj - anoc;
         if((meshj < mesc) | meshj == mesc & diahj < diac) {
             idade -= 1;
         }
@@ -101,7 +102,8 @@ public class ClientePF extends Cliente {
         + "CPF: " + getCPF() + "\n"
         + "Data de nascimento: " + getDataNascimento() + "\n"
         + "Veiculos: \n" 
-        + imprimeVeiculos();
+        + imprimeVeiculos() + "\n"
+        + "Valor seguro: " + getValorSeguro();
         return infocliente;
    }
 }

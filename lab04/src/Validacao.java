@@ -11,7 +11,7 @@ public class Validacao {
         return ehIgual(str, tamanho_str, pos_str+1);
     }
 
-    private static boolean verificarDigitosVerificadores(String cpf) { // confere os digitos verificadores
+    private static boolean verificarDigitosVerificadoresCPF(String cpf) { // confere os digitos verificadores
         int soma = 0;
         int primeiroDigito;
         int segundoDigito;
@@ -52,14 +52,14 @@ public class Validacao {
         else if (ehIgual(cpf, tam_cpf, 0)) {
             return false;
         } 
-        else if (!verificarDigitosVerificadores(cpf)) {
+        else if (!verificarDigitosVerificadoresCPF(cpf)) {
             return false;
         }
         return true;
     }
 
     //Valida cnpj
-    private static boolean verificarDigitosVerificadores(String CNPJ) { // confere os digitos verificadores
+    private static boolean verificarDigitosVerificadoresCNPJ(String CNPJ) { // confere os digitos verificadores
         int soma = 0;
         int resto;
         int primeiroDigito;
@@ -104,7 +104,7 @@ public class Validacao {
 
         if (tam_cnpj != 14) {
             return false;
-        } else if (verificarDigitosVerificadores(CNPJ)) {
+        } else if (verificarDigitosVerificadoresCNPJ(CNPJ)) {
             return true;
         }
         return false;
@@ -113,7 +113,7 @@ public class Validacao {
     //Validar nome
     public static boolean validarNome(String nome) {
         if(nome.length() == 0)
-            return false
+            return false;
 
         for (char ch: nome.toCharArray()) {
             if(!Character.isLetter(ch))

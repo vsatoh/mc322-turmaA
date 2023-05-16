@@ -9,7 +9,6 @@ public class Seguradora {
     private String endereco;
     private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
     private List <Cliente> listaClientes = new ArrayList<Cliente>();
-    private List <Integer> numeroSinistros = new ArrayList<Integer>();
     private List <Integer> listaID = new ArrayList<Integer>();
 
 
@@ -80,15 +79,6 @@ public class Seguradora {
           this.listaID = listaID;
      }
 
-     
-     public List <Integer> getNumeroSinistros() {
-          return numeroSinistros;
-     }
-
-     public void setNumeroSinistros (List <Integer> numeroSinistros) {
-          this.numeroSinistros = numeroSinistros;
-     }
-
      //Adiciona ou remove itens da lista
 
      public void addlistaID(int n) {
@@ -105,18 +95,6 @@ public class Seguradora {
 
      public void removelistaSinistros(Sinistro sinistro) {
           this.listaSinistros.remove(sinistro);
-     }
-
-     public void addNumeroSinistros(Cliente cliente) { //numero de sinistros
-          int pos = this.listaClientes.indexOf(cliente);
-          int ele = this.numeroSinistros.get(pos);
-          this.numeroSinistros.add(pos, ele+1);
-     }
-
-     public void removeNumeroSinistros(Cliente cliente) {
-          int pos = this.listaClientes.indexOf(cliente);
-          int ele = this.numeroSinistros.get(pos);
-          this.numeroSinistros.add(pos, ele-1);
      }
 
      public void addlistaClientes(ClientePF cliente) {
@@ -209,7 +187,7 @@ public class Seguradora {
           System.out.println("Sinistro gerado com sucesso!");
           sinistro = new Sinistro("21/04/2023", "centro", this, veiculo, cliente, Sinistro.geraId(this));
           this.addlistaSinistros(sinistro);
-          this.addNumeroSinistros(cliente);
+          cliente.setValorSeguro(calcularPrecoSeguroCliente(cliente));
           return true;
      }
 
@@ -235,21 +213,36 @@ public class Seguradora {
           }
      }
 
-     public double calcularPrecoSeguroCliente(ClientePF cliente) {
-          int pos = this.getlistaClientes().indexOf(cliente);
-          return cliente.calculaScore*(1 + this.getNumeroSinistros().get(pos));
+     public int numeroSinistros(Cliente cliente) { //numero de sinistros
+          int cont = 0;
+          for (int i = 0; i < getlistaSinistros().size(); i++) {
+               if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente.getNome())) {
+                    cont += 1;
+               }
+          }
+          return cont;
      }
 
-     public double calcularPrecoSeguroCliente(ClientePJ cliente) {
-          int pos = this.getlistaClientes().indexOf(cliente);
-          return cliente.calculaScore*(1 + this.getNumeroSinistros().get(pos));
+     public double calcularPrecoSeguroCliente(Cliente cliente) {
+          int pos = getlistaClientes().indexOf(cliente);
+          return cliente.calculaScore()*(1 + numeroSinistros(cliente));
      }
 
      public double calcularReceita() {
           double soma = 0;
-          for(int i; i < this.getlistaClientes().length; i++) {
-               soma += this.calcularPrecoSeguroCliente(getlistaClientes().get(i));
+          for(int i = 0; i < getlistaClientes().size(); i++) {
+               soma += getlistaClientes().get(i).getValorSeguro();
           }
-          return soma;
+          return soma/2;
      }
+
+     //transferir seguro
+     // public boolean transferirSeguro(Cliente cliente1, Cliente cliente2) {
+
+     //      for(Veiculo carro: cliente1.getListaVeiculos()) {
+     //           if(Seguradora.getlistaSinistros())
+     //           cliente2.addlistaVeiculos(carro);
+     //           cliente1.removelistaVeiculos(carro);
+     //      }
+     // }
 }

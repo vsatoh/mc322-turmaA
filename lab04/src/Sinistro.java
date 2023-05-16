@@ -73,7 +73,7 @@ public class Sinistro {
             n = rand.nextInt(999999);
             n +=1;
             if(!seguradora.getListaID().contains(n)) {
-                seguradora.addlistaID(n);;
+                seguradora.addlistaID(n);
                 return n;
             }
         } while(seguradora.getListaID().contains(n));

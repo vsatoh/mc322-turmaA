@@ -55,19 +55,29 @@ public class Cliente {
         this.listaVeiculos.add(veiculo);
     }
 
-   public String imprimeVeiculos() {
-    String listaveiculomodelado = "";
-    for(Veiculo i: getListaVeiculos()) {
-        listaveiculomodelado += i.toString() + "\n";
+    public void removelistaVeiculos(Veiculo veiculo) {
+        this.listaVeiculos.remove(veiculo);
     }
-    return listaveiculomodelado;
+
+   public String imprimeVeiculos() {
+        String listaveiculomodelado = "";
+        for(Veiculo i: getListaVeiculos()) {
+            listaveiculomodelado += i.toString() + "\n";
+        }
+        return listaveiculomodelado;
+    }
+
+    public double calculaScore() {
+        double score = CalcSeguro.VALOR_BASE.getFator();
+        return score;
     }
 
     public String toString() {
         String infocliente;
         infocliente = "Nome: " + getNome() + "\n"
         + "Endereço: " + getEndereco() + "\n"
-        + "Veiculos: " + getListaVeiculos();
+        + "Veiculos: " + getListaVeiculos() + "\n"
+        + "Valor seguro: " + getValorSeguro();
         return infocliente;
    }
 
