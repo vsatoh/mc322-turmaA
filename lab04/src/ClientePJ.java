@@ -4,12 +4,14 @@ public class ClientePJ extends Cliente {
     final private String CNPJ;
     private Date dataFundacao;
     private int qntdeFuncionarios;
+    private double valorSeguro;
 
     public ClientePJ(String nome, String endereco, double valorSeguro, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
         super(nome, endereco, valorSeguro);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
         this.qntdeFuncionarios = qntdeFuncionarios;
+        this.valorSeguro = valorSeguro;
     }
     
     public Date getDataFundacao() {

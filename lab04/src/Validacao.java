@@ -1,3 +1,5 @@
+import java.sql.Date;
+
 public class Validacao {
 
     //Valida cpf
@@ -118,6 +120,22 @@ public class Validacao {
         for (char ch: nome.toCharArray()) {
             if(!Character.isLetter(ch))
                 return false;
+        }
+        return true;
+    }
+
+    public static boolean validarData(Date data) {
+        int dia = data.getDate(),
+        mes = data.getMonth()+1,
+        ano = data.getYear() + 1900;
+        if(dia < 1 || dia >= 31) {
+            return false;
+        }
+        if(mes < 1 || mes > 12) {
+            return false;
+        }
+        if(ano < 0) {
+            return false;
         }
         return true;
     }
