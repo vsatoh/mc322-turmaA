@@ -43,45 +43,4 @@ public enum MenuOpcoes {
 	public SubmenuOpcoes[] getSubmenu() {
 		return submenu;
 	}
-
-	// public static void exibirMenuExterno() {
-	// 	MenuOpcoes menuOpcoes[] = MenuOpcoes.values();
-	// 	System.out.println("Menu principal");
-	// 	for(MenuOpcoes op: menuOpcoes) {
-	// 		System.out.println(op.ordinal() + " - " + op.getDescricao());
-	// 	}
-	// } 
-
-	// public static MenuOpcoes lerOpcaoMenuExterno() {
-	// 	Scanner scanner = new Scanner(System.in);
-	// 	int opUsuario;
-	// 	MenuOpcoes opUsuarioConst;
-	// 	do {
-	// 		System.out.println("Digite uma opcao: ");
-	// 		opUsuario = scanner.nextInt();
-	// 	}while(opUsuario < 0 || opUsuario > MenuOpcoes.values().length - 1);
-	// 	opUsuarioConst = MenuOpcoes.values()[opUsuario];
-	// 	return opUsuarioConst;
-	// }
-
-	// public static void executarOpcaoMenuExterno(MenuOpcoes op) {
-	// 	switch(op) {
-	// 		case CADASTROS:
-	// 		case LISTAR:
-	// 		case EXCLUIR:
-	// 			executarSubmenu(op);
-	// 			break;
-	// 		case GERAR_SINISTRO:
-	// 			System.out.println("Executar metodo gerar Sinistro");
-	// 			break;
-	// 		case TRANSFERIR_SEGURO:
-	// 			System.out.println("Executar metodo tranferir seguro");
-	// 			break;
-	// 		case CALCULAR_RECEITA:
-	// 			System.out.println("Executar metodo calcular receita");
-	// 			break;
-	// 		//case SAIR:
-	// 	}
-	// }
-
 }

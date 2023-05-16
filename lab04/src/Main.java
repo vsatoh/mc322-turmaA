@@ -8,12 +8,13 @@ public class Main {
 	private static ArrayList<Seguradora> listaSeguradoras = new ArrayList<>();
 
 	public static ClientePF coletaInfoPF() {
-		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy")
+		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner entrada = new Scanner(System.in);
 		String nome;
 		String endereco;
 		String cpf;
 		String genero;
+		String data;
 		Date dataLicenca;
 		String educacao;
 		Date dataNascimento;
@@ -37,21 +38,28 @@ public class Main {
 			genero = entrada.nextLine();
 		} while(!Validacao.validarNome(genero));
 
-		do {
-			System.out.println("Data Licenca: ");
-			dataLicenca = formatadata.parse(entrada.nextLine());
-		} while(!Validacao.validarData(dataLicenca));
+		System.out.println("Data Licenca: ");
+		data = entrada.nextLine();
+
+		try {
+			dataLicenca = formatadata.parse(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		do {
 			System.out.println("Educacao (somente letras): ");
 			educacao = entrada.nextLine();
 		} while(!Validacao.validarNome(educacao));
-
-		do {
-			System.out.println("Data Nascimento: ");
-			dataNascimento = formatadata.parse(entrada.nextLine());
-		} while(!Validacao.validarData(dataNascimento));
 		
+		System.out.println("Data Nascimento: ");
+		data = entrada.nextLine();
+		try {
+			dataNascimento = formatadata.parse(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		do {
 			System.out.println("Classe economica (somente letras): ");
 			classeEconomica = entrada.nextLine();
@@ -63,14 +71,14 @@ public class Main {
 	}
 
 	public static ClientePJ coletaInfoPJ() {
-		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy")
+		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner entrada = new Scanner(System.in);
 		String nome;
 		String endereco;
 		String CNPJ;
 		Date dataFundacao;
 		int qntdeFuncionarios;
-		double valorSeguro;
+		String data;
 
 		do {
 			System.out.println("Nome: ");
@@ -82,20 +90,24 @@ public class Main {
 
 		do {
 			System.out.println("CNPJ: ");
-			cpf = entrada.nextLine();
+			CNPJ = entrada.nextLine();
 		} while(!Validacao.validarCNPJ(CNPJ));
 
-		do {
-			System.out.println("Data fundacao: ");
-			dataFundacao = formatadata.parse(entrada.nextLine());
-		} while(!Validacao.validarData(dataFundacao));
+		System.out.println("Data fundacao: ");
+		data = entrada.nextLine();
+		try {
+			dataFundacao = formatadata.parse(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 		do {
 			System.out.println("Quantidade de funcionarios: ");
 			qntdeFuncionarios = entrada.nextInt();
-		} while(Validacao.validarNome(qntdeFuncionarios));
+		} while(qntdeFuncionarios < 0);
 
-		ClientePJ cliente = new ClientePJ(nome, endereco, valorSeguro, CNPJ, dataFundacao, qntdeFuncionarios);
+		ClientePJ cliente = new ClientePJ(nome, endereco, 0, CNPJ, dataFundacao, qntdeFuncionarios);
 		entrada.close();
 		return cliente;
 	}
@@ -105,22 +117,22 @@ public class Main {
 		String marca;
 		String modelo;
 		int anoFabricacao;
-		Scanner scanner = new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in);
 
 		System.out.println("Placa: ");
 		placa = entrada.nextLine();
 		System.out.println("Marca: ");
 		marca = entrada.nextLine();
 		System.out.println("Modelo: ");
-		Modelo = entrada.nextLine();
+		modelo = entrada.nextLine();
 
 		do {
 			System.out.println("Ano fabricacao: ");
 			anoFabricacao = entrada.nextInt();
-		} while(anoFabricacao < 0)
+		} while(anoFabricacao < 0);
 		
 		Veiculo carro = new Veiculo(placa, marca, modelo, anoFabricacao);
-		
+		entrada.close();
 		return carro;
 	}
 
@@ -129,7 +141,7 @@ public class Main {
 		String telefone;
 		String email;
 		String endereco;
-		Scanner scanner = new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in);
 
 		do {
 			System.out.println("Nome: ");
@@ -147,27 +159,75 @@ public class Main {
 
 		Seguradora seguradora = new Seguradora(nome, telefone, email, endereco);
 		return seguradora;
-		scanner.close();
 	}
 
-	public static int encontraSeguradora(String nome) {
+	public static int encontraSeguradora() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Nome seguradora: ");
+		String nome = scanner.nextLine();
 		for(int i = 0; i < listaSeguradoras.size(); i++) {
 			if(listaSeguradoras.get(i).getNome().equals(nome)) {
 				return i;
 			}
 		}
-		return 0;
+		return -1;
 	}
 
-	public static void listarSinistrosCliente(String nome) {
+	public static Cliente encontraCliente(String nome) {
+		for(Seguradora s: listaSeguradoras) {
+			for(Cliente c: s.getlistaClientes()) {
+				if(c.getNome().equals(nome))
+					return c;
+			}
+		}
+		return null;
+	}
+
+
+	public static void listarSinistrosCliente() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Nome cliente: ");
+		String nome = scanner.nextLine();
 		for (int j = 0; j < listaSeguradoras.size(); j++) {
-			for (int i = 0; i < getlistaSinistros().size(); i++) {
+			for (int i = 0; i < listaSeguradoras.get(j).getlistaSinistros().size(); i++) {
 				if(listaSeguradoras.get(j).getlistaSinistros().get(i).getCliente().getNome().equals(nome)) {
 					System.out.println(listaSeguradoras.get(j).getlistaSinistros().get(i).toString());
 				}
 		   }
 		}
    }
+
+	public static void listarVeiculosSeguradora() {
+		int pos = encontraSeguradora();
+		for (Cliente c: listaSeguradoras.get(pos).getlistaClientes()) {
+			for (Veiculo v: c.getListaVeiculos()) {
+				System.out.println(v.toString());
+			}
+		}
+	}
+
+	public static void listarVeiculosCliente() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Nome cliente: ");
+		String nome = scanner.nextLine();
+		Cliente c = encontraCliente(nome);
+		for (Veiculo v: c.getListaVeiculos()){
+			System.out.println(v.toString());
+		}
+	}
+
+	public static void excluirCliente() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Digite o nome do cliente: ");
+		String nome = scanner.nextLine();
+		int s = encontraSeguradora();
+		int pos;
+		for(int i = 0; i < listaSeguradoras.get(s).getlistaClientes().size(); i++) {
+			if(listaSeguradoras.get(s).getlistaClientes().get(i).getNome().equals(nome))
+				pos = i;
+		}
+		listaSeguradoras.get(s).removerCliente(listaSeguradoras.get(s).getlistaClientes().get(pos));
+	}
 
 	private static void exibirMenuExterno() {
 		MenuOpcoes menuOpcoes[] = MenuOpcoes.values();
@@ -238,16 +298,15 @@ public class Main {
 		}
 	}
 	
-	private static void executarOpcaoSubMenu(SubmenuOpcoes opSubmenu, Seguradora seguradora) {
+	private static void executarOpcaoSubMenu(SubmenuOpcoes opSubmenu) {
+		int posseg;
+		Seguradora seguradora;
 		switch(opSubmenu) {
 		case CADASTRAR_CLIENTE:
 			System.out.println("Pessoa Física (1) ou Jurídica (2) ?");
 			Scanner scanner = new Scanner(System.in);
 			int opUsuario = scanner.nextInt();
-			String nomeSeg;
-			System.out.println("Nome seguradora: ")
-			nomeSeg = scanner.nextLine()
-			int posseg = encontraSeguradora(nomeSeg);
+			posseg = encontraSeguradora();
 			System.out.println("Insira as informacoes abaixo: ");
 			if(opUsuario == 1) {
 				ClientePF clientePF = coletaInfoPF();
@@ -264,40 +323,28 @@ public class Main {
 			break;
 		case CADASTRAR_SEGURADORA:
 			System.out.println("Insira as informacoes abaixo: ");
-			Seguradora seguradora = coletaInfoSeguradora();
+			seguradora = coletaInfoSeguradora();
 			listaSeguradoras.add(seguradora);
 			break;
 		case LISTAR_CLIENTES:
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Nome seguradora: ")
-			nomeSeg = scanner.nextLine()
-			int posseg = encontraSeguradora(nomeSeg);
+			posseg = encontraSeguradora();
 			listaSeguradoras.get(posseg).listarClientes();
-			scanner.close();
 			break;
 		case LISTAR_SINISTROS_SEGURADORA:
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Nome seguradora: ")
-			nomeSeg = scanner.nextLine()
-			int posseg = encontraSeguradora(nomeSeg);
+			posseg = encontraSeguradora();
 			listaSeguradoras.get(posseg).listarSinistros();
-			scanner.close();
 			break;
 		case LISTAR_SINISTROS_CLIENTE:
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Nome cliente: ")
-			nome = scanner.nextLine()
-			listarSinistrosCliente(nomeSeg);
-			scanner.close();
+			listarSinistrosCliente();
 			break;
 		case LISTAR_VEICULOS_SEGURADORA:
-			System.out.println("Chamar metodo listar veiculos");
+			listarVeiculosSeguradora();
 			break;
 		case LISTAR_VEICULOS_CLIENTE:
-			System.out.println("Chamar metodo listar veiculos");
+			listarVeiculosCliente();
 			break;
 		case EXCLUIR_CLIENTE:
-			System.out.println("Chamar metodo excluir cliente");
+			excluirCliente();
 			break;
 		case EXCLUIR_VEICULO:
 			System.out.println("Chamar metodo excluir veiculo");
@@ -305,8 +352,6 @@ public class Main {
 		case EXCLUIR_SINISTRO:
 			System.out.println("Chamar metodo excluir sinistro");
 			break;
-		//case VOLTAR:
-		//	break;
 		}
 	}
 	

@@ -105,6 +105,10 @@ public class Seguradora {
           this.listaClientes.add(cliente);
      }
 
+     public void removelistaClientes(Cliente cliente) {
+          this.listaClientes.remove(cliente);
+     }
+
      public void removelistaClientes(ClientePF cliente) {
           this.listaClientes.remove(cliente);
      }
@@ -144,6 +148,16 @@ public class Seguradora {
           return false;
      }
 
+     public boolean removerCliente(Cliente cliente) {
+          if(getlistaClientes().contains(cliente)) {
+               removelistaClientes(cliente);
+               System.out.println("Cliente removido com sucesso!");
+               return true;
+          }
+          System.out.println("Nao foi possivel remover cliente");
+          return false;
+     }
+
      public boolean removerCliente(ClientePF cliente) {
           if(getlistaClientes().contains(cliente)) {
                removelistaClientes(cliente);
@@ -166,19 +180,7 @@ public class Seguradora {
 
      //Funcao de gerar sinistro
      public boolean gerarSinistro(Cliente cliente, Veiculo veiculo) {
-          //Scanner entrada = new Scanner(System.in);
-          // Date data;
-          // SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
-          // data = formatadata.parse("17/04/2023");
           Sinistro sinistro;
-          // String data = "21/04/2023";
-          // String endereco = "centro";
-
-          // System.out.print("Data: ");
-          // data = entrada.nextLine();
-          // System.out.print("Endereco: ");
-          // endereco = entrada.nextLine();
-          // entrada.close();
 
           if(!(listaClientes.contains(cliente) || cliente.getListaVeiculos().contains(veiculo))) {
                System.out.println("Nao foi possivel gerar sinistro");
@@ -208,7 +210,7 @@ public class Seguradora {
      }
 
      public void listarClientes() {
-          for(int i = 0; i < getlistaClientes().size(); i++) {
+          for (int i = 0; i < getlistaClientes().size(); i++) {
                System.out.println(getlistaClientes().get(i).toString());
           }
      }
