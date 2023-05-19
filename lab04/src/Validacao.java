@@ -102,6 +102,7 @@ public class Validacao {
         int tam_cnpj;
         CNPJ = CNPJ.replaceAll("\\.", "");
         CNPJ = CNPJ.replaceAll("\\-", "");
+        CNPJ = CNPJ.replaceAll("\\/", "");
         tam_cnpj = CNPJ.length();
 
         if (tam_cnpj != 14) {

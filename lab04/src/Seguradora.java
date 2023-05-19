@@ -148,16 +148,6 @@ public class Seguradora {
           return false;
      }
 
-     public boolean removerCliente(Cliente cliente) {
-          if(getlistaClientes().contains(cliente)) {
-               removelistaClientes(cliente);
-               System.out.println("Cliente removido com sucesso!");
-               return true;
-          }
-          System.out.println("Nao foi possivel remover cliente");
-          return false;
-     }
-
      public boolean removerCliente(ClientePF cliente) {
           if(getlistaClientes().contains(cliente)) {
                removelistaClientes(cliente);

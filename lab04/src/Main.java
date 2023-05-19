@@ -14,10 +14,10 @@ public class Main {
 		String endereco;
 		String cpf;
 		String genero;
-		String data;
-		Date dataLicenca;
+		String data1, data2;
+		Date dataLicenca = null;
 		String educacao;
-		Date dataNascimento;
+		Date dataNascimento = null;
 		String classeEconomica;
 
 		do {
@@ -39,10 +39,10 @@ public class Main {
 		} while(!Validacao.validarNome(genero));
 
 		System.out.println("Data Licenca: ");
-		data = entrada.nextLine();
+		data1 = entrada.nextLine();
 
 		try {
-			dataLicenca = formatadata.parse(data);
+			dataLicenca = formatadata.parse(data1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,20 +53,17 @@ public class Main {
 		} while(!Validacao.validarNome(educacao));
 		
 		System.out.println("Data Nascimento: ");
-		data = entrada.nextLine();
+		data2 = entrada.nextLine();
 		try {
-			dataNascimento = formatadata.parse(data);
+			dataNascimento = formatadata.parse(data2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		do {
-			System.out.println("Classe economica (somente letras): ");
-			classeEconomica = entrada.nextLine();
-		} while(!Validacao.validarNome(classeEconomica));
+		System.out.println("Classe economica (somente letras): ");
+		classeEconomica = entrada.nextLine();
 
 		ClientePF cliente = new ClientePF(nome, endereco, 0, dataLicenca, educacao, genero, classeEconomica, cpf, dataNascimento);
-		entrada.close();
 		return cliente;
 	}
 
@@ -76,7 +73,7 @@ public class Main {
 		String nome;
 		String endereco;
 		String CNPJ;
-		Date dataFundacao;
+		Date dataFundacao = null;
 		int qntdeFuncionarios;
 		String data;
 
@@ -95,20 +92,19 @@ public class Main {
 
 		System.out.println("Data fundacao: ");
 		data = entrada.nextLine();
+
 		try {
 			dataFundacao = formatadata.parse(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-
 		do {
 			System.out.println("Quantidade de funcionarios: ");
 			qntdeFuncionarios = entrada.nextInt();
 		} while(qntdeFuncionarios < 0);
 
 		ClientePJ cliente = new ClientePJ(nome, endereco, 0, CNPJ, dataFundacao, qntdeFuncionarios);
-		entrada.close();
 		return cliente;
 	}
 
@@ -132,7 +128,6 @@ public class Main {
 		} while(anoFabricacao < 0);
 		
 		Veiculo carro = new Veiculo(placa, marca, modelo, anoFabricacao);
-		entrada.close();
 		return carro;
 	}
 
@@ -161,6 +156,8 @@ public class Main {
 		return seguradora;
 	}
 
+
+
 	public static int encontraSeguradora() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Nome seguradora: ");
@@ -183,6 +180,23 @@ public class Main {
 		return null;
 	}
 
+	public static void menuCadastroCliente() {
+		int posseg = 0;
+		do {
+			posseg = encontraSeguradora();
+		} while (posseg == -1);
+		System.out.println("Pessoa Física (1) ou Jurídica (2) ?");
+		Scanner scanner = new Scanner(System.in);
+		int tipopessoa = scanner.nextInt();
+		System.out.println("Insira as informacoes abaixo: ");
+		if(tipopessoa == 1) {
+			ClientePF clientePF = coletaInfoPF();
+			listaSeguradoras.get(posseg).cadastrarCliente(clientePF);
+		} else if(tipopessoa == 2) {
+			ClientePJ clientePJ = coletaInfoPJ();
+			listaSeguradoras.get(posseg).cadastrarCliente(clientePJ);
+		}
+	}
 
 	public static void listarSinistrosCliente() {
 		Scanner scanner = new Scanner(System.in);
@@ -195,7 +209,7 @@ public class Main {
 				}
 		   }
 		}
-   }
+    }
 
 	public static void listarVeiculosSeguradora() {
 		int pos = encontraSeguradora();
@@ -221,12 +235,12 @@ public class Main {
 		System.out.println("Digite o nome do cliente: ");
 		String nome = scanner.nextLine();
 		int s = encontraSeguradora();
-		int pos;
+		int pos = 0;
 		for(int i = 0; i < listaSeguradoras.get(s).getlistaClientes().size(); i++) {
 			if(listaSeguradoras.get(s).getlistaClientes().get(i).getNome().equals(nome))
 				pos = i;
 		}
-		listaSeguradoras.get(s).removerCliente(listaSeguradoras.get(s).getlistaClientes().get(pos));
+		listaSeguradoras.get(s).getlistaClientes().remove(pos);
 	}
 
 	private static void exibirMenuExterno() {
@@ -236,13 +250,7 @@ public class Main {
 			System.out.println(op.ordinal() + " - " + op.getDescricao());
 		}
 	}
-	
-	/* exibir submenus
-	 * se a lista de constantes do submenu for percorrida da mesma forma que o meu externo, a opção Voltar
-	 * é printada com a posição que está na lista do enum (9 - Voltar). Por isso, a lista é percorrida 
-	 * de forma diferente, tendo i como o inteiro correspondente. Assim, para listar o submenu de cadastros,
-	 * por exemplo, vai ser printado "3 - Voltar".
-	 */
+
 	private static void exibirSubmenu(MenuOpcoes op) {
 		SubmenuOpcoes[] submenu = op.getSubmenu();
 		System.out.println(op.getDescricao());
@@ -303,19 +311,7 @@ public class Main {
 		Seguradora seguradora;
 		switch(opSubmenu) {
 		case CADASTRAR_CLIENTE:
-			System.out.println("Pessoa Física (1) ou Jurídica (2) ?");
-			Scanner scanner = new Scanner(System.in);
-			int opUsuario = scanner.nextInt();
-			posseg = encontraSeguradora();
-			System.out.println("Insira as informacoes abaixo: ");
-			if(opUsuario == 1) {
-				ClientePF clientePF = coletaInfoPF();
-				listaSeguradoras.get(posseg).cadastrarCliente(clientePF);
-			} else if(opUsuario == 2) {
-				ClientePJ clientePJ = coletaInfoPJ();
-				listaSeguradoras.get(posseg).cadastrarCliente(clientePJ);
-			}
-			scanner.close();
+			menuCadastroCliente();
 			break;
 		case CADASTRAR_VEICULO:
 			System.out.println("Insira as informacoes abaixo: ");
@@ -373,71 +369,56 @@ public class Main {
         Date data;
         SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
         Scanner entrada = new Scanner(System.in);
-        data = formatadata.parse("02/07/2002");
+        // data = formatadata.parse("02/07/2002");
 
-        // Instanciando veiculos e chamando toString
+        // // Instanciando veiculos e chamando toString
 
-        veiculo1 = new Veiculo("ABC", "honda", "alibaba", 2020);
-        veiculo2 = new Veiculo("DEF", "fiat", "eren", 2021);
-        veiculo3 = new Veiculo("GHI", "samsung", "sal marinho", 2021);
-        System.out.println(veiculo1.toString());
+        // veiculo1 = new Veiculo("ABC", "honda", "alibaba", 2020);
+        // veiculo2 = new Veiculo("DEF", "fiat", "eren", 2021);
+        // veiculo3 = new Veiculo("GHI", "samsung", "sal marinho", 2021);
+        // System.out.println(veiculo1.toString());
 
-        // Instanciando obejtos do tipo cliente e seguradora
-        String nome;
-        String telefone;
-        String email;
-        String endereco;
+        // // Instanciando obejtos do tipo cliente e seguradora
 
-        System.out.print("Nome: ");
-        nome = entrada.nextLine();
-        System.out.print("Telefone: ");
-        telefone = entrada.nextLine();
-        System.out.print("Email: ");
-        email = entrada.nextLine();
-        System.out.print("Endereco: ");
-        endereco = entrada.nextLine();
+        // seguradora = new Seguradora("seguros shark", "00000000", "seguros@example.com", "rua 4");
+        // clientePF = new ClientePF("Victor", "Centro", 0, formatadata.parse("02/07/2002"), "superior completo", "Masculino", "media", "149.691.157-10", data);
+        // clientePJ = new ClientePJ("Abraao", "Centro", 0, "12.345.678/0002-00", formatadata.parse("16/05/2002"), 100);
+        // clientePJ2 = new ClientePJ("Alirio", "Centro", 0, "00.000.000/0000-00", formatadata.parse("16/05/2002"), 200);
+        // // Adicionando veiculos aos clientes
 
-        seguradora = new Seguradora(nome, telefone, email, endereco);
-        clientePF = new ClientePF("Victor", "Centro", 0, formatadata.parse("02/07/2002"), "superior completo", "Masculino", "media", "149.691.157-10", data);
-        clientePJ = new ClientePJ("Abraao", "Centro", 0, "12.345.678/0002-00", formatadata.parse("16/05/2002"), 100);
-        clientePJ2 = new ClientePJ("Alirio", "Centro", 0, "00.000.000/0000-00", formatadata.parse("16/05/2002"), 200);
-        // Adicionando veiculos aos clientes
+        // clientePF.addlistaVeiculos(veiculo1);
+        // clientePJ.addlistaVeiculos(veiculo2);
+        // clientePJ2.addlistaVeiculos(veiculo3);
+        // // Cadastrando clientes na seguradora
 
-        clientePF.addlistaVeiculos(veiculo1);
-        clientePJ.addlistaVeiculos(veiculo2);
-        clientePJ2.addlistaVeiculos(veiculo3);
-        // Cadastrando clientes na seguradora
+        // seguradora.cadastrarCliente(clientePJ);
+        // seguradora.cadastrarCliente(clientePF);
 
-        seguradora.cadastrarCliente(clientePJ);
-        seguradora.cadastrarCliente(clientePF);
+        // // Chmando metodos de validacao
 
-        // Chmando metodos de validacao
+        // System.out.println("CPF: " + clientePF.getCPF() + " eh " + Validacao.validarCPF(clientePF.getCPF()));
+        // System.out.println("CNPJ: " + clientePJ.getCNPJ() + " eh " + Validacao.validarCNPJ(clientePJ.getCNPJ()));
 
-        System.out.println("CPF: " + clientePF.getCPF() + " eh " + Validacao.validarCPF(clientePF.getCPF()));
-        System.out.println("CNPJ: " + clientePJ.getCNPJ() + " eh " + Validacao.validarCNPJ(clientePJ.getCNPJ()));
+        // // toString dos clientes 
 
-        // toString dos clientes 
+        // System.out.println(clientePF.toString());
+        // System.out.println(clientePJ.toString());
 
-        System.out.println(clientePF.toString());
-        System.out.println(clientePJ.toString());
+        // // Gerando sinistros
 
-        // Gerando sinistros
+        // seguradora.gerarSinistro(clientePJ, veiculo2);
+        // seguradora.gerarSinistro(clientePF, veiculo1);
 
-        seguradora.gerarSinistro(clientePJ, veiculo2);
-        seguradora.gerarSinistro(clientePF, veiculo1);
+        // // Chamando tostring para o primeiro elemento da lista de sinistros
+        // System.out.println(seguradora.getlistaSinistros().get(0).toString());
 
-        // Chamando tostring para o primeiro elemento da lista de sinistros
-        System.out.println(seguradora.getlistaSinistros().get(0).toString());
+        // seguradora.visualizarSinistro(clientePF.getNome());
 
-        seguradora.visualizarSinistro(clientePF.getNome());
+        // seguradora.listarSinistros();
 
-        seguradora.listarSinistros();
+        // seguradora.listarClientes();
 
-        seguradora.listarClientes();
-
-        System.out.println("receita total: R$ " + seguradora.calcularReceita());
-
-        entrada.close();
+        // System.out.println("receita total: R$ " + seguradora.calcularReceita());
 
 		MenuOpcoes op;
 		do {
@@ -446,5 +427,6 @@ public class Main {
 			executarOpcaoMenuExterno(op);
 		}while(op != MenuOpcoes.SAIR);
 		System.out.println("Saiu do sistema");
+		entrada.close();
     }
 }
