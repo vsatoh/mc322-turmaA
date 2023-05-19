@@ -171,7 +171,6 @@ public class Seguradora {
      //Funcao de gerar sinistro
      public boolean gerarSinistro(Cliente cliente, Veiculo veiculo) {
           Sinistro sinistro;
-
           if(!(listaClientes.contains(cliente) || cliente.getListaVeiculos().contains(veiculo))) {
                System.out.println("Nao foi possivel gerar sinistro");
                return false;
@@ -227,14 +226,4 @@ public class Seguradora {
           }
           return soma/2;
      }
-
-     //transferir seguro
-     // public boolean transferirSeguro(Cliente cliente1, Cliente cliente2) {
-
-     //      for(Veiculo carro: cliente1.getListaVeiculos()) {
-     //           if(Seguradora.getlistaSinistros())
-     //           cliente2.addlistaVeiculos(carro);
-     //           cliente1.removelistaVeiculos(carro);
-     //      }
-     // }
 }

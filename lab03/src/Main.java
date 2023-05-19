@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Calendar;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -12,7 +13,8 @@ public class Main {
         SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
         Scanner entrada = new Scanner(System.in);
         data = formatadata.parse("17/04/2023");
-
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
         // Instanciando veiculos e chamando toString
 
         veiculo1 = new Veiculo("ABC", "honda", "alibaba", 2020);
@@ -51,13 +53,13 @@ public class Main {
 
         // Chmando metodos de validacao
 
-        System.out.println("CPF: " + clientePF.getCPF() + " eh " + ClientePF.validarCPF(clientePF.getCPF()));
-        System.out.println("CNPJ: " + clientePJ.getCNPJ() + " eh " + ClientePJ.validarCNPJ(clientePJ.getCNPJ()));
+        // System.out.println("CPF: " + clientePF.getCPF() + " eh " + ClientePF.validarCPF(clientePF.getCPF()));
+        // System.out.println("CNPJ: " + clientePJ.getCNPJ() + " eh " + ClientePJ.validarCNPJ(clientePJ.getCNPJ()));
 
         // toString dos clientes 
 
-        System.out.println(clientePF.toString());
-        System.out.println(clientePJ.toString());
+        // System.out.println(clientePF.toString());
+        // System.out.println(clientePJ.toString());
 
         // Gerando sinistros
 
@@ -65,11 +67,11 @@ public class Main {
         seguradora.gerarSinistro(clientePF, veiculo1, seguradora);
 
         // Chamando tostring para o primeiro elemento da lista de sinistros
-        System.out.println(seguradora.getlistaSinistros().get(0).toString());
+        // System.out.println(seguradora.getlistaSinistros().get(0).toString());
 
-        seguradora.visualizarSinistro(clientePF.getNome());
+        // seguradora.visualizarSinistro(clientePF.getNome());
 
-        seguradora.listarSinistros();
+        // seguradora.listarSinistros();
 
         seguradora.listarClientes();
 
