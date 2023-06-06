@@ -225,5 +225,11 @@ public class Seguradora {
                     }
           }
           return segurosCliente;
-     }          
+     }       
+     
+     public boolean gerarSeguro(ClientePF cliente) {
+          Date dataInicio, dataFim;
+          Seguradora seguradora = this;
+          int valorMensal = 0, id = gera
+     }
 }
