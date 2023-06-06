@@ -51,6 +51,14 @@ public class ClientePF extends Cliente {
         this.genero = genero ;
     }
 
+    public List <Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+
+    public void setListaVeiculos(List <Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos ;
+    }
+
     // public String getClasseEconomica() {
     //     return classeEconomica;
     // }
@@ -58,33 +66,27 @@ public class ClientePF extends Cliente {
     // public void setGeneroClasseEconomica(String classeEconomica) {
     //     this.classeEconomica = classeEconomica ;
     // }
-     
-    @Override
-    public double calculaScore() {
-        double score, fator = 0;
-        int idade = calculaIdade();
-        if(idade >= 18 & idade < 30) {
-            fator = CalcSeguro.FATOR_18_30.getFator();
-        } else if(idade >= 30 & idade < 60) {
-            fator = CalcSeguro.FATOR_30_60.getFator();
-        } else if(idade >= 60 & idade < 90) {
-            fator = CalcSeguro.FATOR_60_90.getFator();
+    
+    public boolean addVeiculo(Veiculo veiculo) {
+        //verificar se o carro existe
+        //verificar se o carro ja esta na lista
+        if(getListaVeiculos().contains(veiculo)) {
+            System.out.println("Veiculo ja cadastrado");
+            return false;
         }
-        score = CalcSeguro.VALOR_BASE.getFator()*fator*this.getListaVeiculos().size(); //incluir o fator idade
-        return score;
+        this.listaVeiculos.add(veiculo);
+        System.out.println("Veiculo cadastrado com sucesso");
+        return true
     }
 
-    //calcula idade
-    public int calculaIdade() {
-        int diahj = 15, meshj = 5, anohj = 2023;
-        int diac = this.getDataNascimento().getDate(),
-        mesc = this.getDataNascimento().getMonth()+1,
-        anoc = this.getDataNascimento().getYear() + 1900;
-        int idade = anohj - anoc;
-        if((meshj < mesc) | meshj == mesc & diahj < diac) {
-            idade -= 1;
+    public boolean removeVeiculo(Veiculo veiculo) {
+        if(!getListaVeiculos().contains(veiculo)) {
+            System.out.println("Veiculo nao encontrado");
+            return false;
         }
-        return idade;
+        this.listaVeiculos.remove(veiculo);
+        System.out.println("Veiculo removido com sucesso");
+        return true;
     }
 
     @Override

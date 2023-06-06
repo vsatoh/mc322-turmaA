@@ -11,7 +11,7 @@ public abstract class Seguro {
     private int valorMensal;
 
 
-    public Sinistro(int ID, Date dataInicio, Date dataFim, Seguradora seguradora, int valorMensal) {
+    public Seguro(int ID, Date dataInicio, Date dataFim, Seguradora seguradora, int valorMensal) {
         this.ID = ID;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -49,9 +49,32 @@ public abstract class Seguro {
         this.seguradora = seguradora;
     }
 
-    public boolean desautorizarCondutor();
+    public List <Condutor> getListaCondutor() {
+        return listaCondutor;
+    }
 
-    public boolean autorizarCondutor();
+    public void setListaCondutor(List <Sinistro> listaCondutor) {
+        this.listaCondutor = listaCondutor ;
+    }
+
+    public List <Sinistro> getListaSinistro() {
+        return listaSinistros;
+    }
+
+    public void setListaSinistro(List <Sinistro> listaSinistros) {
+        this.listaSinistros = listaSinistros ;
+    }
+    
+    public Condutor buscaCondutor(String cpf) {
+        for(int i = 0; i < getListaCondutor().size(); i++) {
+            if(getListaCondutor().get(i).getCPF().equals(cpf)) {
+                return getListaCondutor().get(i);
+            }
+        }
+    }
+    public boolean desautorizarCondutor(Condutor condutor);
+
+    public boolean autorizarCondutor(Condutor condutor);
 
     public double calcularValor();
     

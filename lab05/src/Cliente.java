@@ -85,10 +85,10 @@ public abstract class Cliente {
         return listaveiculomodelado;
     }
 
-    public double calculaScore() {
-        double score = CalcSeguro.VALOR_BASE.getFator();
-        return score;
-    }
+    // public double calculaScore() {
+    //     double score = CalcSeguro.VALOR_BASE.getFator();
+    //     return score;
+    // }
 
     public String toString() {
         String infocliente;

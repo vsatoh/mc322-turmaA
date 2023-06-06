@@ -168,20 +168,6 @@ public class Seguradora {
           return false;
      }
 
-     //Funcao de gerar sinistro
-     public boolean gerarSinistro(Cliente cliente, Veiculo veiculo) {
-          Sinistro sinistro;
-          if(!(listaClientes.contains(cliente) || cliente.getListaVeiculos().contains(veiculo))) {
-               System.out.println("Nao foi possivel gerar sinistro");
-               return false;
-          }
-          System.out.println("Sinistro gerado com sucesso!");
-          sinistro = new Sinistro("21/04/2023", "centro", this, veiculo, cliente, Sinistro.geraId(this));
-          this.addlistaSinistros(sinistro);
-          cliente.setValorSeguro(calcularPrecoSeguroCliente(cliente));
-          return true;
-     }
-
      public boolean visualizarSinistro(String cliente) {
           for (int i = 0; i < getlistaSinistros().size(); i++) {
                if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente)) {

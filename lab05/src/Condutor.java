@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Date;
+
 
 public class Condutor {
     final private String cpf;
@@ -7,7 +9,7 @@ public class Condutor {
     private String endereco;
     private String email;
     private Date dataNasc;
-    private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
+    private List <Sinistro> listaSinistro = new ArrayList<Sinistro>();
 
     public Condutor(String cpf, String nome, String telefone, String endereco, String email, Date dataNasc) {
         this.cpf = cpf;
@@ -55,11 +57,31 @@ public class Condutor {
     }
 
     public Date getDataNascimento() {
-        return dataNascimento;
+        return dataNasc;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(Date dataNasc) {
+        this.dataNasc = dataNasc;
     } 
 
+    public List <Sinistro> getListaSinistro() {
+        return listaSinistros;
+    }
+
+    public void setListaSinistro(List <Sinistro> listaSinistros) {
+        this.listaSinistros = listaSinistros ;
+    }
+
+    //calcula idade
+    public int calculaIdade() {
+        int diahj = 15, meshj = 5, anohj = 2023;
+        int diac = this.getDataNascimento().getDate(),
+        mesc = this.getDataNascimento().getMonth()+1,
+        anoc = this.getDataNascimento().getYear() + 1900;
+        int idade = anohj - anoc;
+        if((meshj < mesc) | meshj == mesc & diahj < diac) {
+            idade -= 1;
+        }
+        return idade;
+    }
 }

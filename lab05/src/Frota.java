@@ -1,13 +1,12 @@
 import java.util.List;
 import java.util.*;
 
-public class Frotas {
+public class Frota {
 
     private String code;
     private List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();
 
-
-    public frotas(String code) {
+    public Frota(String code) {
         this.code = code;
     }
 
