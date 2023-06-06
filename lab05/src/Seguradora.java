@@ -3,13 +3,14 @@ import java.util.List;
 // import java.text.SimpleDateFormat;
 // import java.util.Date;
 public class Seguradora {
-    private String nome;
-    private String telefone;
-    private String email;
-    private String endereco;
-    private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
-    private List <Cliente> listaClientes = new ArrayList<Cliente>();
-    private List <Integer> listaID = new ArrayList<Integer>();
+     final private String cnpj;
+     private String nome;
+     private String telefone;
+     private String email;
+     private String endereco;
+     private List <Cliente> listaClientes = new ArrayList<Cliente>();
+     private List <Seguros> listaSeguros = new ArrayList<Seguros>();
+     private List <Integer> listaID = new ArrayList<Integer>();
 
 
      // Funcao construtuora
@@ -51,16 +52,16 @@ public class Seguradora {
           return endereco ;
      }
      
-     public void setEndereco ( String endereco ) {
+     public void setEndereco (String endereco) {
           this.endereco = endereco ;
      }
 
-     public List <Sinistro> getlistaSinistros() {
-          return listaSinistros;
+     public List <Seguros> getlistaSeguros() {
+          return listaSeguros;
      }
 
-     public void setlistaSinistros (List <Sinistro> listaSinistros) {
-          this.listaSinistros = listaSinistros;
+     public void setlistaSeguros (List <Seguros> listaSeguros) {
+          this.listaSeguros = listaSeguros;
      }
 
      public List <Cliente> getlistaClientes() {
@@ -87,14 +88,6 @@ public class Seguradora {
 
      public void removelistaID(int n) {
           this.listaID.remove(n);
-     }
-
-     public void addlistaSinistros(Sinistro sinistro) {
-          this.listaSinistros.add(sinistro);
-     }
-
-     public void removelistaSinistros(Sinistro sinistro) {
-          this.listaSinistros.remove(sinistro);
      }
 
      public void addlistaClientes(ClientePF cliente) {
@@ -212,4 +205,25 @@ public class Seguradora {
           }
           return soma/2;
      }
+
+     public List <Seguro> getSegurosPorCliente(Cliente cliente) {
+          List <Seguro> segurosCliente = new ArrayList < >() ;
+          for (Seguro seguro : getlistaSeguros()) {
+               if (seguro.getCliente().equals(cliente)) {
+                    segurosCliente.add(seguro);
+               }
+          }
+          return segurosCliente;
+     }
+
+     public List <Sinistro> getSinistrosPorCliente(Cliente cliente) {
+          List <Sinistro> sinistrosCliente = new ArrayList < >() ;
+          for (Seguro seguro : getlistaSeguros()) {
+               for(Sinistro sinistro : seguro.getListaSinistro())
+                    if (sinistro.ge.equals(cliente)) {
+                         segurosCliente.add(seguro);
+                    }
+          }
+          return segurosCliente;
+     }          
 }

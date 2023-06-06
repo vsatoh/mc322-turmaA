@@ -2,7 +2,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class ClientePJ extends Cliente {
     final private String CNPJ;
     private Date dataFundacao;
@@ -37,6 +36,14 @@ public class ClientePJ extends Cliente {
         return qntdeFuncionarios;
     }
 
+    public List <Frota> getListaFrota() {
+        return listaFrota
+    }
+
+    public void setListaFrota(List <Frota> listaFrota) {
+        this.listaFrota = listaFrota;
+    }
+ 
     public boolean cadastrarFrota() {
         Scanner entrada = new Scanner(System.in);
         Frota frota;
@@ -62,19 +69,6 @@ public class ClientePJ extends Cliente {
         return score;
     }
 
-    @Override
-    public String toString() {
-        String infocliente;
-        infocliente = "Nome: " + getNome() + "\n"
-        + "Endereco: " + getEndereco() + "\n"
-        + "CNPJ: " + getCNPJ() + "\n"
-        + "Data de fundacao: " + getDataFundacao() + "\n"
-        + "Veiculos: \n" 
-        + imprimeVeiculos() + "\n"
-        + "Valor seguro: " + getValorSeguro();
-        return infocliente;
-   }
-
     public int calculaIdade() {
         int diahj = 15, meshj = 5, anohj = 2023;
         int diac = this.getDataFundacao().getDate(),
@@ -86,4 +80,17 @@ public class ClientePJ extends Cliente {
         }
         return idade;
     }
+
+    @Override
+    public String toString() {
+        String infocliente;
+        infocliente = "Nome: " + getNome() + "\n"
+        + "Telefone: " + getTelefone() + "\n"
+        + "Endereço: " + getEndereco() + "\n"
+        + "Email: " + getEmail() + "\n"
+        + "CNPJ: " + getCNPJ() + "\n"
+        + "Data de fundacao: " + getDataFundacao() + "\n"
+        + "Frota: " + getListaFrota();
+        return infocliente;
+   }
 }

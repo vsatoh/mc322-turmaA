@@ -47,4 +47,19 @@ public class Frota {
         System.out.println("Veiculo removido com sucesso");
         return true;
     }
+
+    public String imprimeVeiculos() {
+        String listaveiculomodelado = "";
+        for(Veiculo i: getListaVeiculos()) {
+            listaveiculomodelado += i.toString() + "\n";
+        }
+        return listaveiculomodelado;
+    }
+
+    public String toString() {
+        String infoFrota;
+        infoFrota = "Code: " + getCode() + "\n"
+        + "Veiculos: " + imprimeVeiculos();
+        return infoFrota;
+    }
 }

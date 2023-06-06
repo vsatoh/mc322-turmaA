@@ -89,20 +89,27 @@ public class ClientePF extends Cliente {
         return true;
     }
 
+    public String imprimeVeiculos() {
+        String listaveiculomodelado = "";
+        for(Veiculo i: getListaVeiculos()) {
+            listaveiculomodelado += i.toString() + "\n";
+        }
+        return listaveiculomodelado;
+    }
+
     @Override
     public String toString() {
         String infocliente;
         infocliente = "Nome: " + getNome() + "\n"
-        + "Endereco: " + getEndereco() + "\n"
-        + "Data Licenca: " + getDataLicenca() + "\n"
+        + "Telefone: " + getTelefone() + "\n"
+        + "Endereço: " + getEndereco() + "\n"
+        + "Email: " + getEmail();
         + "Educacao: " + getEducacao() + "\n"
         + "Genero: " + getGenero() + "\n"
-        + "Classe Economica: " + getClasseEconomica()+ "\n"
         + "CPF: " + getCPF() + "\n"
         + "Data de nascimento: " + getDataNascimento() + "\n"
         + "Veiculos: \n" 
         + imprimeVeiculos() + "\n"
-        + "Valor seguro: " + getValorSeguro();
         return infocliente;
    }
 }

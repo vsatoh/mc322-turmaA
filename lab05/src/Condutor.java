@@ -84,4 +84,27 @@ public class Condutor {
         }
         return idade;
     }
+
+    public boolean adicionarSinistro(int ID, Seguro seguro) {
+        for(int i = 0; i < seguro.getListaSinistro().size(); i++) {
+            if(seguro.getListaSinistro().get(i).getId() == ID) {
+                this.listaSinistro.add(seguro.getListaSinistro().get(i));
+                System.out.println("SInistro adiionado com sucesso!");
+                return true;
+            }
+        }
+        System.out.println("Sinistro não encontrado");
+        return false;
+    }
+    
+    public String toString() {
+        String infoCondutor;
+        infoCondutor = "Nome: " + getNome() + "\n"
+        + "Telefone: " + getTelefone() + "\n"
+        + "CPF: " + getCPF() + "\n"
+        + "Endereco" + getEndereco() + "\n"
+        + "Email: " + getEmail() + "\n"
+        + "Data de Nascimento" + getDataNascimento() + "\n";
+        return infoCondutor;
+    }
 }

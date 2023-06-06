@@ -77,14 +77,6 @@ public abstract class Cliente {
     //     this.listaVeiculos.remove(veiculo);
     // }
 
-   public String imprimeVeiculos() {
-        String listaveiculomodelado = "";
-        for(Veiculo i: getListaVeiculos()) {
-            listaveiculomodelado += i.toString() + "\n";
-        }
-        return listaveiculomodelado;
-    }
-
     // public double calculaScore() {
     //     double score = CalcSeguro.VALOR_BASE.getFator();
     //     return score;
