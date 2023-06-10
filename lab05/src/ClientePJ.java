@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -80,6 +81,58 @@ public class ClientePJ extends Cliente {
         }
         return idade;
     }
+
+    public boolean getVeiculosPorFrota(Frota frota) {
+        if(!getListaFrota().contains(frota)) {
+            System.out.println("Nao foi possivel listar os veiculos! - Frota nao encontrada");
+            return false;
+        }
+        System.out.println("Veiculos encontrados na frota: ");
+        for(Veiculo veiculo : frota.getListaVeiculos()) {
+            System.out.println(veiculo.toString());
+        }
+        System.out.println("Fim da lista");
+        return true;
+    }
+
+    public boolean atualizarFrota(String code, Veiculo veiculo) {
+        System.out.println("Adicionar (1) ou Remover (2) veiculo?");
+        Scanner entrada = new Scanner(System.in);
+        String opcao = entrada.nextLine();
+        if(opcao.equals("1")) {
+            for(Frota frota : getListaFrota()) {
+                if(frota.getCode().equals(code)) {
+                    return frota.addVeiculo(veiculo);
+                }
+            }
+            System.out.println("Frota nao encontrada");
+            return false;
+        }
+        else if(opcao.equals("2")) {
+            for(Frota frota : getListaFrota()) {
+                if(frota.getCode().equals(code)) {   
+                    return frota.removeVeiculo(veiculo);
+                }
+            }
+            System.out.println("Frota nao encontrada");
+            return false;
+        }
+        System.out.println("Opcao invalida");
+        return false;
+    }
+
+    public boolean atualizarFrota(String code) {
+        for(int i = 0; i < getListaFrota().size(); i++) {
+            if(getListaFrota().get(i).getCode().equals(code)) {
+                getListaFrota().remove(i);
+                System.out.println("frota removida com sucesso!");
+                return true;
+            }
+        }
+        System.out.println("Frota nao encontrada");
+        return false;
+    }
+
 
     @Override
     public String toString() {
