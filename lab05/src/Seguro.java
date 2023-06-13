@@ -53,8 +53,8 @@ public abstract class Seguro {
         return listaCondutor;
     }
 
-    public void setListaCondutor(List <Sinistro> listaCondutor) {
-        this.listaCondutor = listaCondutor ;
+    public void setListaCondutor(List <Condutor> listaCondutor) {
+        this.listaCondutor = listaCondutor;
     }
 
     public List <Sinistro> getListaSinistro() {
@@ -72,11 +72,11 @@ public abstract class Seguro {
             }
         }
     }
-    public boolean desautorizarCondutor(Condutor condutor);
+    public abstract boolean desautorizarCondutor(Condutor condutor);
 
-    public boolean autorizarCondutor(Condutor condutor);
+    public abstract boolean autorizarCondutor(Condutor condutor);
 
-    public double calcularValor();
+    public abstract double calcularValor();
     
-    public Sinistro gerarSinistro();
+    public abstract Sinistro gerarSinistro();
 }

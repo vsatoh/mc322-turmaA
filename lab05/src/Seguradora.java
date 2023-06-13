@@ -193,10 +193,10 @@ public class Seguradora {
           return cont;
      }
 
-     public double calcularPrecoSeguroCliente(Cliente cliente) {
-          int pos = getlistaClientes().indexOf(cliente);
-          return cliente.calculaScore()*(1 + numeroSinistros(cliente));
-     }
+     // public double calcularPrecoSeguroCliente(Cliente cliente) {
+     //      int pos = getlistaClientes().indexOf(cliente);
+     //      return cliente.calculaScore()*(1 + numeroSinistros(cliente));
+     // }
 
      public double calcularReceita() {
           double soma = 0;
@@ -217,19 +217,19 @@ public class Seguradora {
      }
 
      public List <Sinistro> getSinistrosPorCliente(Cliente cliente) {
-          List <Sinistro> sinistrosCliente = new ArrayList < >() ;
-          for (Seguro seguro : getlistaSeguros()) {
-               for(Sinistro sinistro : seguro.getListaSinistro())
-                    if (sinistro.ge.equals(cliente)) {
-                         segurosCliente.add(seguro);
-                    }
+          List <Seguro> segurosCliente = getSegurosPorCliente(cliente);
+          List <Sinistro> sinistrosCliente = new ArrayList <Sinistro>();
+          for (Seguro seguro : segurosCliente) {
+               for(Sinistro sinistro : seguro.getListaSinistro()) {
+                    sinistrosCliente.add(sinistro);
+               }
           }
-          return segurosCliente;
+          return sinistrosCliente;
      }       
      
      public boolean gerarSeguro(ClientePF cliente) {
           Date dataInicio, dataFim;
           Seguradora seguradora = this;
-          int valorMensal = 0, id = gera
+          int valorMensal = 0;
      }
 }

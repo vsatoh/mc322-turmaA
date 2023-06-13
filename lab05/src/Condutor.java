@@ -9,7 +9,7 @@ public class Condutor {
     private String endereco;
     private String email;
     private Date dataNasc;
-    private List <Sinistro> listaSinistro = new ArrayList<Sinistro>();
+    private List <Sinistro> listaSinistros = new ArrayList<Sinistro>();
 
     public Condutor(String cpf, String nome, String telefone, String endereco, String email, Date dataNasc) {
         this.cpf = cpf;
@@ -69,7 +69,7 @@ public class Condutor {
     }
 
     public void setListaSinistro(List <Sinistro> listaSinistros) {
-        this.listaSinistros = listaSinistros ;
+        this.listaSinistros = listaSinistros;
     }
 
     //calcula idade
@@ -88,7 +88,7 @@ public class Condutor {
     public boolean adicionarSinistro(int ID, Seguro seguro) {
         for(int i = 0; i < seguro.getListaSinistro().size(); i++) {
             if(seguro.getListaSinistro().get(i).getId() == ID) {
-                this.listaSinistro.add(seguro.getListaSinistro().get(i));
+                this.listaSinistros.add(seguro.getListaSinistro().get(i));
                 System.out.println("SInistro adiionado com sucesso!");
                 return true;
             }

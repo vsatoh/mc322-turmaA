@@ -2,15 +2,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.*;
 public class ClientePJ extends Cliente {
     final private String CNPJ;
     private Date dataFundacao;
     private int qntdeFuncionarios;
-    // private double valorSeguro;
-    private List <Frota> listaFrota = new Arraylist<Frotas>();
+    private List <Frota> listaFrota = new Arraylist<Frota>();
 
-    public ClientePJ(String nome, String telefone, String endereco, String email String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
+    public ClientePJ(String nome, String telefone, String endereco, String email, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
         super(nome, telefone, endereco, email);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
@@ -61,13 +60,6 @@ public class ClientePJ extends Cliente {
         this.listaFrota.add(frota);
         System.out.println("Nova frota cadastrada com sucesso");
         return true
-    }
-
-    @Override
-    public double calculaScore() {
-        double score;
-        score = CalcSeguro.VALOR_BASE.getFator()*(1+(qntdeFuncionarios)/100)*this.getListaVeiculos().size();
-        return score;
     }
 
     public int calculaIdade() {

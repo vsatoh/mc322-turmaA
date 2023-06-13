@@ -1,5 +1,5 @@
 import java.util.Date;
-
+import java.util.*;
 public class ClientePF extends Cliente {
     final private String cpf;
     private String genero;
@@ -103,7 +103,7 @@ public class ClientePF extends Cliente {
         infocliente = "Nome: " + getNome() + "\n"
         + "Telefone: " + getTelefone() + "\n"
         + "Endereço: " + getEndereco() + "\n"
-        + "Email: " + getEmail();
+        + "Email: " + getEmail() + "\n"
         + "Educacao: " + getEducacao() + "\n"
         + "Genero: " + getGenero() + "\n"
         + "CPF: " + getCPF() + "\n"
