@@ -49,6 +49,14 @@ public abstract class Seguro {
         this.seguradora = seguradora;
     }
 
+    public int getValorMensal() {
+        return valorMensal;
+    }
+
+    public void setValorMensal(int valorMensal) {
+        this.valorMensal = valorMensal;
+    }
+
     public List <Condutor> getListaCondutor() {
         return listaCondutor;
     }
@@ -72,11 +80,12 @@ public abstract class Seguro {
             }
         }
     }
+
     public abstract boolean desautorizarCondutor(Condutor condutor);
 
     public abstract boolean autorizarCondutor(Condutor condutor);
 
-    public abstract double calcularValor();
+    public abstract double calcularValor(String cpf);
     
-    public abstract Sinistro gerarSinistro();
+    public abstract boolean gerarSinistro(Veiculo veiculo, Condutor condutor);
 }

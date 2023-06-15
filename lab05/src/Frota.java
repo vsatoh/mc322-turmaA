@@ -35,7 +35,7 @@ public class Frota {
         }
         this.listaVeiculos.add(veiculo);
         System.out.println("Veiculo cadastrado com sucesso");
-        return true
+        return true;
     }
 
     public boolean removeVeiculo(Veiculo veiculo) {

@@ -1,6 +1,6 @@
 import java.util.Random;
 //import java.util.Scanner;
-
+import java.util.Date;
 public class Sinistro {
 
     final private int ID;

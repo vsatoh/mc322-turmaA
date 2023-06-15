@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 import java.util.*;
 public class ClientePJ extends Cliente {
     final private String CNPJ;
     private Date dataFundacao;
     private int qntdeFuncionarios;
-    private List <Frota> listaFrota = new Arraylist<Frota>();
+    private List <Frota> listaFrota = new ArrayList<Frota>();
 
     public ClientePJ(String nome, String telefone, String endereco, String email, String CNPJ, Date dataFundacao, int qntdeFuncionarios) {
         super(nome, telefone, endereco, email);
@@ -37,7 +33,7 @@ public class ClientePJ extends Cliente {
     }
 
     public List <Frota> getListaFrota() {
-        return listaFrota
+        return listaFrota;
     }
 
     public void setListaFrota(List <Frota> listaFrota) {
@@ -59,7 +55,7 @@ public class ClientePJ extends Cliente {
         
         this.listaFrota.add(frota);
         System.out.println("Nova frota cadastrada com sucesso");
-        return true
+        return true;
     }
 
     public int calculaIdade() {
@@ -85,6 +81,16 @@ public class ClientePJ extends Cliente {
         }
         System.out.println("Fim da lista");
         return true;
+    }
+
+    public List <Veiculo> getListaVeiculos() {
+        List <Veiculo> listaVeiculos = new ArrayList<Veiculo>();
+        for(Frota frota : getListaFrota()) {
+            for(Veiculo veiculo : frota.getListaVeiculos()) {
+                listaVeiculos.add(veiculo);
+            }
+        }
+        return listaVeiculos;
     }
 
     public boolean atualizarFrota(String code, Veiculo veiculo) {

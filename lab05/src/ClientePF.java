@@ -76,7 +76,7 @@ public class ClientePF extends Cliente {
         }
         this.listaVeiculos.add(veiculo);
         System.out.println("Veiculo cadastrado com sucesso");
-        return true
+        return true;
     }
 
     public boolean removeVeiculo(Veiculo veiculo) {
@@ -108,8 +108,8 @@ public class ClientePF extends Cliente {
         + "Genero: " + getGenero() + "\n"
         + "CPF: " + getCPF() + "\n"
         + "Data de nascimento: " + getDataNascimento() + "\n"
-        + "Veiculos: \n" 
-        + imprimeVeiculos() + "\n"
+        + "Veiculos: " + "\n" 
+        + imprimeVeiculos() + "\n";
         return infocliente;
    }
 }

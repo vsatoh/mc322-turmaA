@@ -1,4 +1,4 @@
-public class SeguroPJ extends Seguro{
+public class SeguroPJ extends Seguro {
     private Frota frota;
     private ClientePJ cliente;
 
@@ -12,15 +12,15 @@ public class SeguroPJ extends Seguro{
         return frota;
     }
 
-    public void setFrota(Veiculo frota) {
+    public void setFrota(Frota frota) {
         this.frota = frota;
     }
 
-    public ClientePF getCliente() {
+    public ClientePJ getCliente() {
         return cliente;
     }
 
-    public void setCliente(ClientePF cliente) {
+    public void setCliente(ClientePJ cliente) {
         this.cliente = cliente;
     }
 
@@ -44,11 +44,11 @@ public class SeguroPJ extends Seguro{
         return true
     }
 
-    public double calculaValor(String cpf) {
+    public double calcularValor(String cpf) {
         double valor, fator = 0;
         Condutor condutor = buscaCondutor(cpf);
         int anosPosFundacao = getCliente().calculaIdade();
-        valor = CalcSeguro.VALOR_BASE.getFator()*(10 + cliente.getQntdeFuncionarios()/10)*(1 + 1/(anosPosFundacao + 2))*(1 + 1/(cliente.getListaVeiculos().size() + 2))*(2 + getListaSinistro()/10)*(5 + condutor.getListaSinistro()/10); 
+        valor = CalcSeguro.VALOR_BASE.getFator()*(10 + getCliente().getQntdeFuncionarios()/10)*(1 + 1/(anosPosFundacao + 2))*(1 + 1/(getCliente().getListaVeiculos().size() + 2))*(2 + getListaSinistro().size()/10)*(5 + condutor.getListaSinistro().size()/10); 
         return valor;
     }
 
@@ -64,6 +64,4 @@ public class SeguroPJ extends Seguro{
         this.getListaSinistro().add(sinistro);
         return true;
     }
-
-    
 }

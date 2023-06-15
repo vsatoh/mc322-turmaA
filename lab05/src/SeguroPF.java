@@ -44,7 +44,7 @@ public class SeguroPF extends Seguro {
         return true
     }
 
-    public double calculaValor(String cpf) {
+    public double calcularValor(String cpf) {
         double valor, fator = 0;
         Condutor condutor = buscaCondutor(cpf);
         int idade = condutor.calculaIdade();
@@ -55,7 +55,7 @@ public class SeguroPF extends Seguro {
         } else if(idade >= 60 & idade < 90) {
             fator = CalcSeguro.FATOR_60_90.getFator();
         }
-        valor = CalcSeguro.VALOR_BASE.getFator()*fator*(1 + 1/(cliente.getListaVeiculos().size() + 2))*(2 + getListaSinistro()/10)*(5 + condutor.getListaSinistro()/10); 
+        valor = CalcSeguro.VALOR_BASE.getFator()*fator*(1 + 1/(getCliente().getListaVeiculos().size() + 2))*(2 + getListaSinistro().size()/10)*(5 + condutor.getListaSinistro().size()/10); 
         return valor;
     }
 

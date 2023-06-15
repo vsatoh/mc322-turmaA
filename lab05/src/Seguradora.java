@@ -8,8 +8,10 @@ public class Seguradora {
      private String telefone;
      private String email;
      private String endereco;
-     private List <Cliente> listaClientes = new ArrayList<Cliente>();
-     private List <Seguros> listaSeguros = new ArrayList<Seguros>();
+     private List <ClientePF> listaClientesPF = new ArrayList<Cliente>();
+     private List <ClientePJ> listaClientesPJ = new ArrayList<Cliente>();
+     private List <SeguroPF> listaSegurosPF = new ArrayList<Seguro>();
+     private List <SeguroPJ> listaSegurosPJ = new ArrayList<Seguro>();
      private List <Integer> listaID = new ArrayList<Integer>();
 
 
@@ -56,20 +58,39 @@ public class Seguradora {
           this.endereco = endereco ;
      }
 
-     public List <Seguros> getlistaSeguros() {
-          return listaSeguros;
+
+     //getters e setters seguro
+     public List <SeguroPF> getlistaSegurosPF() {
+          return listaSegurosPF;
      }
 
-     public void setlistaSeguros (List <Seguros> listaSeguros) {
-          this.listaSeguros = listaSeguros;
+     public void setlistaSegurosPF (List <SeguroPF> listaSegurosPF) {
+          this.listaSegurosPF = listaSegurosPF;
      }
 
-     public List <Cliente> getlistaClientes() {
-          return listaClientes;
+     public List <SeguroPJ> getlistaSegurosPJ() {
+          return listaSegurosPJ;
      }
 
-     public void setlistaClientes (List <Cliente> listaClientes) {
-          this.listaClientes = listaClientes;
+     public void setlistaSegurosPJ (List <SeguroPJ> listaSegurosPJ) {
+          this.listaSegurosPJ = listaSegurosPJ;
+     }
+
+     //getters e setters cliente
+     public List <ClientePF> getlistaClientesPF() {
+          return listaClientesPF;
+     }
+
+     public void setlistaClientesPF (List <ClientePF> listaClientesPF) {
+          this.listaClientesPF = listaClientesPF;
+     }
+
+     public List <ClientePJ> getlistaClientesPJ() {
+          return listaClientesPJ;
+     }
+
+     public void setlistaClientesPJ (List <ClientePJ> listaClientesPJ) {
+          this.listaClientesPJ = listaClientesPJ;
      }
 
      public List <Integer> getListaID() {
@@ -161,54 +182,54 @@ public class Seguradora {
           return false;
      }
 
-     public boolean visualizarSinistro(String cliente) {
-          for (int i = 0; i < getlistaSinistros().size(); i++) {
-               if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente)) {
-                    System.out.println(getlistaSinistros().get(i).toString());
-                    return true;
-               }
-          }
-          return false;
-     }
+     // public boolean visualizarSinistro(String cliente) {
+     //      for (int i = 0; i < getlistaSinistros().size(); i++) {
+     //           if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente)) {
+     //                System.out.println(getlistaSinistros().get(i).toString());
+     //                return true;
+     //           }
+     //      }
+     //      return false;
+     // }
 
-     public void listarSinistros() {
-          for (int i = 0; i < getlistaSinistros().size(); i++) {
-               System.out.println(getlistaSinistros().get(i).toString());
-          }
-     }
+     // public void listarSinistros() {
+     //      for (int i = 0; i < getlistaSinistros().size(); i++) {
+     //           System.out.println(getlistaSinistros().get(i).toString());
+     //      }
+     // }
 
-     public void listarClientes() {
-          for (int i = 0; i < getlistaClientes().size(); i++) {
-               System.out.println(getlistaClientes().get(i).toString());
-          }
-     }
+     // public void listarClientes() {
+     //      for (int i = 0; i < getlistaClientes().size(); i++) {
+     //           System.out.println(getlistaClientes().get(i).toString());
+     //      }
+     // }
 
-     public int numeroSinistros(Cliente cliente) { //numero de sinistros
-          int cont = 0;
-          for (int i = 0; i < getlistaSinistros().size(); i++) {
-               if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente.getNome())) {
-                    cont += 1;
-               }
-          }
-          return cont;
-     }
+     // public int numeroSinistros(Cliente cliente) { //numero de sinistros
+     //      int cont = 0;
+     //      for (int i = 0; i < getlistaSinistros().size(); i++) {
+     //           if(getlistaSinistros().get(i).getCliente().getNome().equals(cliente.getNome())) {
+     //                cont += 1;
+     //           }
+     //      }
+     //      return cont;
+     // }
 
      // public double calcularPrecoSeguroCliente(Cliente cliente) {
      //      int pos = getlistaClientes().indexOf(cliente);
      //      return cliente.calculaScore()*(1 + numeroSinistros(cliente));
      // }
 
-     public double calcularReceita() {
-          double soma = 0;
-          for(int i = 0; i < getlistaClientes().size(); i++) {
-               soma += getlistaClientes().get(i).getValorSeguro();
-          }
-          return soma/2;
-     }
+     // public double calcularReceita() {
+     //      double soma = 0;
+     //      for(int i = 0; i < getlistaClientes().size(); i++) {
+     //           soma += getlistaClientes().get(i).getValorSeguro();
+     //      }
+     //      return soma/2;
+     // }
 
-     public List <Seguro> getSegurosPorCliente(Cliente cliente) {
-          List <Seguro> segurosCliente = new ArrayList < >() ;
-          for (Seguro seguro : getlistaSeguros()) {
+     public List <SeguroPF> getSegurosPorCliente(ClientePF cliente) {
+          List <SeguroPF> segurosCliente = new ArrayList <SeguroPF>() ;
+          for (SeguroPF seguro : getlistaSegurosPF()) {
                if (seguro.getCliente().equals(cliente)) {
                     segurosCliente.add(seguro);
                }
@@ -216,16 +237,38 @@ public class Seguradora {
           return segurosCliente;
      }
 
-     public List <Sinistro> getSinistrosPorCliente(Cliente cliente) {
-          List <Seguro> segurosCliente = getSegurosPorCliente(cliente);
-          List <Sinistro> sinistrosCliente = new ArrayList <Sinistro>();
-          for (Seguro seguro : segurosCliente) {
-               for(Sinistro sinistro : seguro.getListaSinistro()) {
-                    sinistrosCliente.add(sinistro);
-               }
+     // public List <Seguro> getSegurosPorCliente(Cliente cliente) {
+     //      List <Seguro> segurosCliente = new ArrayList <Seguro>();
+     //      for (Seguro seguro : getlistaSeguros()) {
+     //           if (seguro.getCliente().equals(cliente)) {
+     //                segurosCliente.add(seguro);
+     //           }
+     //      }
+     //      return segurosCliente;
+     // }
+
+
+     // public List <Sinistro> getSinistrosPorCliente(Cliente cliente) {
+     //      List <Seguro> segurosCliente = getSegurosPorCliente(cliente);
+     //      List <Sinistro> sinistrosCliente = new ArrayList <Sinistro>();
+     //      for (Seguro seguro : segurosCliente) {
+     //           for(Sinistro sinistro : seguro.getListaSinistro()) {
+     //                sinistrosCliente.add(sinistro);
+     //           }
+     //      }
+     //      return sinistrosCliente;
+     // }   
+     
+     public double calcularReceita() {
+          double soma = 0;
+          for(SeguroPJ seguro : getlistaSegurosPJ()) {
+               soma += seguro.getValorMensal();
           }
-          return sinistrosCliente;
-     }       
+          for(SeguroPF seguro : getlistaSegurosPF()) {
+               soma += seguro.getValorMensal();
+          }
+          return soma;
+     }
      
      public boolean gerarSeguro(ClientePF cliente) {
           Date dataInicio, dataFim;
