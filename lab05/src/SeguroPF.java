@@ -1,9 +1,11 @@
+import java.util.Date;
+
 public class SeguroPF extends Seguro {
     private Veiculo veiculo;
     private ClientePF cliente;
 
     public SeguroPF(int ID, Date dataInicio, Date dataFim, Seguradora seguradora, int valorMensal, Veiculo veiculo, ClientePF cliente) {
-        super(ID, dataInicio, dataInicio, seguradora, valorMensal);
+        super(ID, dataInicio, dataFim, seguradora, valorMensal);
         this.veiculo = veiculo;
         this.cliente = cliente;
     }
@@ -31,7 +33,7 @@ public class SeguroPF extends Seguro {
         }
         System.out.println("Condutor autorizado com sucesso!");
         this.getListaCondutor().add(condutor);
-        return true
+        return true;
     }
 
     public boolean desautorizarCondutor(Condutor condutor) {
@@ -41,7 +43,7 @@ public class SeguroPF extends Seguro {
         }
         System.out.println("Condutor desautorizado com sucesso!");
         this.getListaCondutor().remove(condutor);
-        return true
+        return true;
     }
 
     public double calcularValor(String cpf) {
@@ -67,7 +69,7 @@ public class SeguroPF extends Seguro {
             return false;
         }
         System.out.println("Sinistro gerado com sucesso!");
-        sinistro = new Sinistro(Sinistro.geraId(getSeguradora()), "21/04/2023", "centro", condutor, super);
+        sinistro = new Sinistro(Sinistro.geraId(getSeguradora()), "21/04/2023", "centro", condutor, this);
         this.getListaSinistro().add(sinistro);
         return true;
     }

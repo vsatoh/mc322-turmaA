@@ -8,10 +8,10 @@ public class Seguradora {
      private String telefone;
      private String email;
      private String endereco;
-     private List <ClientePF> listaClientesPF = new ArrayList<Cliente>();
-     private List <ClientePJ> listaClientesPJ = new ArrayList<Cliente>();
-     private List <SeguroPF> listaSegurosPF = new ArrayList<Seguro>();
-     private List <SeguroPJ> listaSegurosPJ = new ArrayList<Seguro>();
+     private List <ClientePF> listaClientesPF = new ArrayList<ClientePF>();
+     private List <ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
+     private List <SeguroPF> listaSegurosPF = new ArrayList<SeguroPF>();
+     private List <SeguroPJ> listaSegurosPJ = new ArrayList<SeguroPJ>();
      private List <Integer> listaID = new ArrayList<Integer>();
 
 
@@ -112,23 +112,19 @@ public class Seguradora {
      }
 
      public void addlistaClientes(ClientePF cliente) {
-          this.listaClientes.add(cliente);
+          this.listaClientesPF.add(cliente);
      }
 
      public void addlistaClientes(ClientePJ cliente) {
-          this.listaClientes.add(cliente);
-     }
-
-     public void removelistaClientes(Cliente cliente) {
-          this.listaClientes.remove(cliente);
+          this.listaClientesPJ.add(cliente);
      }
 
      public void removelistaClientes(ClientePF cliente) {
-          this.listaClientes.remove(cliente);
+          this.listaClientesPF.remove(cliente);
      }
 
      public void removelistaClientes(ClientePJ cliente) {
-          this.listaClientes.remove(cliente);
+          this.listaClientesPJ.remove(cliente);
      }
 
      //funcao de printar as variaveis do objeto
@@ -143,7 +139,7 @@ public class Seguradora {
 
      //Funcoes de adicionar remover cliente
      public boolean cadastrarCliente(ClientePF cliente) {
-          if(!getlistaClientes().contains(cliente)) {
+          if(!getlistaClientesPF().contains(cliente)) {
                addlistaClientes(cliente);
                System.out.println("Cliente cadastrado com sucesso!");
                return true;
@@ -153,7 +149,7 @@ public class Seguradora {
      }
      
      public boolean cadastrarCliente(ClientePJ cliente) {
-          if(!getlistaClientes().contains(cliente)) {
+          if(!getlistaClientesPJ().contains(cliente)) {
                addlistaClientes(cliente);
                System.out.println("Cliente cadastrado com sucesso!");
                return true;
@@ -163,7 +159,7 @@ public class Seguradora {
      }
 
      public boolean removerCliente(ClientePF cliente) {
-          if(getlistaClientes().contains(cliente)) {
+          if(getlistaClientesPF().contains(cliente)) {
                removelistaClientes(cliente);
                System.out.println("Cliente removido com sucesso!");
                return true;
@@ -173,7 +169,7 @@ public class Seguradora {
      }
      
      public boolean removerCliente(ClientePJ cliente) {
-          if(getlistaClientes().contains(cliente)) {
+          if(getlistaClientesPJ().contains(cliente)) {
                removelistaClientes(cliente);
                System.out.println("Cliente removido com sucesso!");
                return true;
@@ -227,9 +223,22 @@ public class Seguradora {
      //      return soma/2;
      // }
 
+
+     //Retorna lista de seguros de cliente do tipo PF
      public List <SeguroPF> getSegurosPorCliente(ClientePF cliente) {
           List <SeguroPF> segurosCliente = new ArrayList <SeguroPF>() ;
           for (SeguroPF seguro : getlistaSegurosPF()) {
+               if (seguro.getCliente().equals(cliente)) {
+                    segurosCliente.add(seguro);
+               }
+          }
+          return segurosCliente;
+     }
+
+     //Retorna lista de seguros de cliente do tipo PJ
+     public List <SeguroPJ> getSegurosPorCliente(ClientePF cliente) {
+          List <SeguroPJ> segurosCliente = new ArrayList <SeguroPJ>() ;
+          for (SeguroPJ seguro : getlistaSegurosPJ()) {
                if (seguro.getCliente().equals(cliente)) {
                     segurosCliente.add(seguro);
                }
