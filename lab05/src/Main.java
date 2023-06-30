@@ -10,23 +10,24 @@ public class Main {
 	public static ClientePF coletaInfoPF() {
 		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner entrada = new Scanner(System.in);
-		String nome;
-		String endereco;
-		String cpf;
-		String genero;
+		String nome, endereco, cpf, genero, telefone, educacao, classeEconomica;
 		String data1, data2;
 		Date dataLicenca = null;
-		String educacao;
 		Date dataNascimento = null;
-		String classeEconomica;
 
 		do {
 			System.out.println("Nome: ");
 			nome = entrada.nextLine();
 		} while(!Validacao.validarNome(nome));
 
+		System.out.println("Telefone: ");
+		telefone = entrada.nextLine();
+
 		System.out.println("Endereco: ");
 		endereco = entrada.nextLine();
+
+		System.out.println("email: ");
+		telefone = entrada.nextLine();
 
 		do {
 			System.out.println("CPF: ");
