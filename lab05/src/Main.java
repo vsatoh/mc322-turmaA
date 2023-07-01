@@ -10,9 +10,8 @@ public class Main {
 	public static ClientePF coletaInfoPF() {
 		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner entrada = new Scanner(System.in);
-		String nome, endereco, cpf, genero, telefone, educacao, classeEconomica;
-		String data1, data2;
-		Date dataLicenca = null;
+		String nome, endereco, cpf, genero, email, telefone, educacao;
+		String data2;
 		Date dataNascimento = null;
 
 		do {
@@ -27,7 +26,7 @@ public class Main {
 		endereco = entrada.nextLine();
 
 		System.out.println("email: ");
-		telefone = entrada.nextLine();
+		email = entrada.nextLine();
 
 		do {
 			System.out.println("CPF: ");
@@ -39,19 +38,20 @@ public class Main {
 			genero = entrada.nextLine();
 		} while(!Validacao.validarNome(genero));
 
-		System.out.println("Data Licenca: ");
-		data1 = entrada.nextLine();
-
-		try {
-			dataLicenca = formatadata.parse(data1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		do {
 			System.out.println("Educacao (somente letras): ");
 			educacao = entrada.nextLine();
 		} while(!Validacao.validarNome(educacao));
+
+		// System.out.println("Data Licenca: ");
+		// data1 = entrada.nextLine();
+
+		// try {
+		// 	dataLicenca = formatadata.parse(data1);
+		// } catch (Exception e) {
+		// 	e.printStackTrace();
+		// }
 		
 		System.out.println("Data Nascimento: ");
 		data2 = entrada.nextLine();
@@ -61,19 +61,14 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		System.out.println("Classe economica (somente letras): ");
-		classeEconomica = entrada.nextLine();
-
-		ClientePF cliente = new ClientePF(nome, endereco, 0, dataLicenca, educacao, genero, classeEconomica, cpf, dataNascimento);
+		ClientePF cliente = new ClientePF(nome, telefone, endereco, email, cpf, genero, educacao, dataNascimento);
 		return cliente;
 	}
 
 	public static ClientePJ coletaInfoPJ() {
 		SimpleDateFormat formatadata = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner entrada = new Scanner(System.in);
-		String nome;
-		String endereco;
-		String CNPJ;
+		String nome, telefone, endereco, email, CNPJ;
 		Date dataFundacao = null;
 		int qntdeFuncionarios;
 		String data;
@@ -83,8 +78,14 @@ public class Main {
 			nome = entrada.nextLine();
 		} while(!Validacao.validarNome(nome));
 
+		System.out.println("Telefone: ");
+		telefone = entrada.nextLine();
+
 		System.out.println("Endereco: ");
 		endereco = entrada.nextLine();
+
+		System.out.println("email: ");
+		email = entrada.nextLine();
 
 		do {
 			System.out.println("CNPJ: ");
@@ -105,7 +106,7 @@ public class Main {
 			qntdeFuncionarios = entrada.nextInt();
 		} while(qntdeFuncionarios < 0);
 
-		ClientePJ cliente = new ClientePJ(nome, endereco, 0, CNPJ, dataFundacao, qntdeFuncionarios);
+		ClientePJ cliente = new ClientePJ(nome, telefone, endereco, email, CNPJ, dataFundacao, qntdeFuncionarios);
 		return cliente;
 	}
 
